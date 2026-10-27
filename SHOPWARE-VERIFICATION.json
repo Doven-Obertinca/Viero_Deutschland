@@ -1,0 +1,174 @@
+{
+  "verifiedAt": "2026-10-26T14:51:34.342Z",
+  "storeApiUrl": "https://viero-deutschland.de/store-api",
+  "context": {
+    "id": "01907421f12572c39efe08062d1036d5",
+    "name": "Viero",
+    "currency": "EUR",
+    "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+    "language": {
+      "id": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+      "name": "Deutsch",
+      "locale": {
+        "code": "de-DE"
+      }
+    }
+  },
+  "catalog": {
+    "retrieved": 225,
+    "categoriesRetrieved": 32,
+    "navigationRoots": 8,
+    "categoryCheck": {
+      "category": "Wanddekoration",
+      "retrieved": 9
+    }
+  },
+  "products": [
+    {
+      "requestedId": "019091a18051717ca7e33783dbabb651",
+      "id": "019091e09a637242bb7b12f6316a7b08",
+      "number": "455149E010001",
+      "name": "Allure",
+      "price": 45.28,
+      "currency": "EUR",
+      "cover": "https://viero-deutschland.de/media/55/a0/49/1720431000/Viero Allure.jpg?ts=1720431000",
+      "mediaStatus": 200,
+      "categories": [
+        {
+          "id": "019091b56cc87f79ae89fafdfb77fa2a",
+          "name": "Wanddekoration"
+        }
+      ],
+      "available": true,
+      "stock": 0,
+      "options": [
+        {
+          "id": "019091de62947b59886af86a8bb87a60",
+          "name": "Silber",
+          "group": {
+            "name": "Farbton | Allure"
+          }
+        },
+        {
+          "id": "fdbe74511a3e41cbb9007ecef23b613b",
+          "name": "1 l",
+          "group": {
+            "name": "Einheit"
+          }
+        }
+      ],
+      "variantsRetrieved": 4,
+      "manufacturer": "Cromology Italia S.p.A.",
+      "customFieldKeys": [
+        "custom_product_downloads_safety",
+        "custom_product_downloads_tech",
+        "custom_product_downloads_color"
+      ],
+      "seo": [
+        {
+          "seoPathInfo": "Allure/455149E010001",
+          "isCanonical": true
+        }
+      ],
+      "seoResolvesToProduct": true,
+      "description": "<b>DEKORATIVES FINISH MIT PERLMUTTARTIGEM SAND </b><div><span style=\"letter-spacing:0px;\">Allure ist eine dekorative Metallic-Farbe für Innenräume. Einfach anzuwenden, bietet große Vielseitigkeit bei Texturen und Farben. Dank der feinen und leicht ausrichtbaren ausgewählten Glassande können einzigartige und raffinierte Effekte erzielt werden, entweder mit Gold- oder Silberreflexionen</span><br /></div>",
+      "localUrl": "http://localhost:3000/produkt/019091e09a637242bb7b12f6316a7b08"
+    },
+    {
+      "requestedId": "019091c88eea72e5b497a64162ab435f",
+      "id": "019091fa30e970eab7b1dbb8bd5073aa",
+      "number": "455161D300002",
+      "name": "Erametal",
+      "price": 80.86,
+      "currency": "EUR",
+      "cover": "https://viero-deutschland.de/media/6d/0d/65/1720432956/Viero Erametal.jpg?ts=1720432956",
+      "mediaStatus": 200,
+      "categories": [
+        {
+          "id": "019091b56cc87f79ae89fafdfb77fa2a",
+          "name": "Wanddekoration"
+        }
+      ],
+      "available": true,
+      "stock": 0,
+      "options": [
+        {
+          "id": "019091f6dc2578409b5242de30dc995a",
+          "name": "Silber",
+          "group": {
+            "name": "Farbton | Erametal"
+          }
+        },
+        {
+          "id": "70dda440740f433b8bf8e038d1869f4b",
+          "name": "0,75 l",
+          "group": {
+            "name": "Einheit"
+          }
+        }
+      ],
+      "variantsRetrieved": 2,
+      "manufacturer": "Cromology Italia S.p.A.",
+      "customFieldKeys": [],
+      "seo": [
+        {
+          "seoPathInfo": "Erametal/455161D300002",
+          "isCanonical": true
+        }
+      ],
+      "seoResolvesToProduct": true,
+      "description": "<b>FINISH MIT METALLIC-EFFEKT AUF WASSERBASIS </b><div><br /></div><div>Erametal ist eine dekorative Farbe, angereichert mit ausgewählten Pigmenten für einen subtilen Metalleffekt mit einem modernen und kosmopolitischen Geschmack. Erametal lässt sich leicht auftragen und ist in einer Reihe von Farben erhältlich, die an die edelsten klassischen Metalle erinnern – Gold, Silber, Bronze, Kupfer –, aber auch an moderne Oberflächen wie Graphit, Anthrazit und Oxidation. </div><div> Die Vielseitigkeit von Erametal ermöglicht nicht nur glatte Oberflächen mit Hell-Dunkel-Effekten, sondern auch eine hohe ästhetische Wirkung auf strukturierten Hintergründen. </div><div> *Farben auf Anfrage oder mit Universalfarbstoffen erhältlich</div>",
+      "localUrl": "http://localhost:3000/produkt/019091fa30e970eab7b1dbb8bd5073aa"
+    },
+    {
+      "requestedId": "019091ff770b71f3ae07f73b28e8ed43",
+      "id": "01909209e9c972599fb09f3ca0a6a181",
+      "number": "455154D300001",
+      "name": "Ghibli",
+      "price": 21.35,
+      "currency": "EUR",
+      "cover": "https://viero-deutschland.de/media/eb/ac/a5/1720436568/Viero Ghibli.jpg?ts=1720436568",
+      "mediaStatus": 200,
+      "categories": [
+        {
+          "id": "019091b56cc87f79ae89fafdfb77fa2a",
+          "name": "Wanddekoration"
+        }
+      ],
+      "available": true,
+      "stock": 0,
+      "options": [
+        {
+          "id": "01909207ebfb77dc9fd1436f21219e60",
+          "name": "Weiß",
+          "group": {
+            "name": "Farbton | Ghibli"
+          }
+        },
+        {
+          "id": "70dda440740f433b8bf8e038d1869f4b",
+          "name": "0,75 l",
+          "group": {
+            "name": "Einheit"
+          }
+        }
+      ],
+      "variantsRetrieved": 3,
+      "manufacturer": "Cromology Italia S.p.A.",
+      "customFieldKeys": [
+        "custom_product_downloads_safety",
+        "custom_product_downloads_tech",
+        "custom_product_downloads_color"
+      ],
+      "seo": [
+        {
+          "seoPathInfo": "Ghibli/455154D300001",
+          "isCanonical": true
+        }
+      ],
+      "seoResolvesToProduct": true,
+      "description": "<b>DEKORATIVER MATTER LACK MIT SANDIGEM EFFEKT </b><div><br /></div><div>Dank des kalibrierten und abgestuften Quarzsands veredelt es die Oberfläche mit sanften Bewegungen und raffinierten matten Texturen. Benannt nach dem heißen, trockenen Wind, der die Dünen der Sahara-Wüste formt.</div>",
+      "localUrl": "http://localhost:3000/produkt/01909209e9c972599fb09f3ca0a6a181"
+    }
+  ]
+}
