@@ -1,0 +1,266 @@
+.accountMenu {
+  position: relative;
+  margin: 0;
+}
+.accountMenu summary {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  list-style: none;
+  cursor: pointer;
+}
+.accountMenu summary::-webkit-details-marker {
+  display: none;
+}
+.accountText {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+.accountIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--viero-green) 18%, transparent);
+  background: color-mix(in srgb, var(--viero-green) 10%, white);
+  transition: background 220ms ease;
+}
+.accountMenu summary:hover .accountIcon {
+  background: color-mix(in srgb, var(--viero-green) 22%, white);
+}
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 1rem);
+  min-width: 240px;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: var(--matte-white);
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 48px rgba(45, 41, 38, 0.12);
+  animation: account-enter 220ms ease both;
+}
+.dropdown p {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--viero-grey);
+  margin: 0 0 0.75rem;
+}
+.dropdown a {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0.6rem 0;
+  font-size: 0.85rem;
+}
+.dropdown button {
+  background: none;
+  border: 0;
+  padding: 0.6rem 0;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.dropdown a:hover,
+.dropdown button:hover {
+  color: var(--viero-green);
+}
+.page {
+  max-width: 1280px;
+  padding: 5rem var(--space);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: start;
+}
+.intro {
+  padding-top: 2rem;
+}
+.intro h1 {
+  font-size: clamp(3rem, 5vw, 5.5rem);
+}
+.intro > p:not(:first-child) {
+  color: var(--viero-grey);
+}
+.back,
+.textLink {
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.back {
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  box-shadow: 0 20px 60px rgba(94, 121, 117, 0.06);
+}
+.card h2 {
+  font-size: 2.25rem;
+  margin: 0.75rem 0 2rem;
+}
+.card > p {
+  font-size: 0.9rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form label {
+  font-size: 0.8rem;
+  margin: 1rem 0 0.5rem;
+}
+.form input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--matte-white);
+  font: inherit;
+  padding: 0.75rem 1rem;
+  color: var(--viero-black);
+}
+.form input:focus-visible {
+  outline: 2px solid var(--viero-green);
+  outline-offset: 2px;
+}
+.password {
+  position: relative;
+}
+.password input {
+  padding-right: 6rem;
+}
+.password button {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  font-size: 0.65rem;
+  min-height: 40px;
+}
+.submit {
+  margin-top: 1.75rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  min-height: 52px;
+  background: var(--viero-green);
+  color: white;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.submit:hover {
+  background: var(--viero-black);
+}
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.hint {
+  font-size: 0.72rem !important;
+  color: var(--viero-grey);
+  line-height: 1.6;
+  margin: 1rem 0 1.5rem;
+}
+.error {
+  border-left: 3px solid var(--viero-green);
+  background: var(--limestone);
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+.registerPrompt {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+}
+.registerPrompt a {
+  color: var(--viero-green);
+  font-weight: 600;
+}
+.profile dt {
+  font-size: 0.7rem;
+  color: var(--viero-grey);
+  margin-top: 1rem;
+}
+.profile dd {
+  overflow-wrap: anywhere;
+}
+.secondary {
+  background: transparent;
+  border: 1px solid var(--viero-green);
+  border-radius: 99px;
+  padding: 0.8rem 1.25rem;
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+@keyframes account-enter {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (max-width: 760px) {
+  .page {
+    grid-template-columns: 1fr;
+    padding-top: 2rem;
+  }
+  .intro {
+    padding-top: 0;
+  }
+  .accountIcon {
+    width: 44px;
+    height: 44px;
+  }
+  .dropdown {
+    right: -3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dropdown {
+    animation: none;
+  }
+  .accountIcon {
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    gap: 1.75rem;
+  }
+  .intro h1 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+  }
+  .intro > p:not(:first-child) {
+    font-size: 0.85rem;
+  }
+  .back {
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .accountText {
+    display: none;
+  }
+}

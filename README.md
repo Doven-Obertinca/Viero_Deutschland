@@ -81,3 +81,17 @@ Metadata and Open Graph use a configured frontend origin. Product and breadcrumb
 ## Validation status
 
 See `SHOPWARE-VERIFICATION.md` for the successful live connection, three-product proof, checks and caching recommendations. `IMPLEMENTATION.md` records the historical foundation phase. Run `npm run shopware:verify` to repeat the read-only verification. Installing dependencies or a successful frontend build does not demonstrate Store API connectivity.
+
+## Customer accounts
+
+The account icon sits before the hamburger navigation. `/konto/anmelden` submits existing customer credentials to Shopware's Store API (`POST /account/login`), verifies the customer with `POST /account/customer`, and stores the returned context token in a session-only HttpOnly, SameSite=Lax cookie. Secure cookies are enabled in production; production hosting must use HTTPS. No customer passwords or Store API keys are stored in browser storage. `/konto` requires a non-guest Shopware customer session. Logout calls `/account/logout` and clears the local cookie even if the backend is unavailable.
+
+All Store API requests now forward the current browser's context token on the server, including product prices, category listings and navigation. `cache: no-store` remains in force; React memoization is request-scoped. Never add shared caching of customer-specific responses. Standalone verification scripts have no browser session and continue to use anonymous context.
+
+**Registration preserves the existing business process.** The current storefront's registration link is `https://viero-deutschland.de/registrierung?nr`, a dedicated Geschäftskunden form with a requested customer group. `/konto/registrieren` links to that existing form instead of introducing an alternative private-account registration that could bypass the current onboarding/approval flow. Password recovery likewise uses the existing Shopware flow at `/account/recover`. Confirmation and recovery emails continue to use the existing production Sales Channel domain, so no domain or production configuration changes are required.
+
+Only customers permitted by the existing Sales Channel rules can authenticate. No accounts or passwords are migrated. To validate a successful existing-customer login, enter a real customer's usual credentials directly in the local sign-in form; do not place credentials in chat or source files. This implementation was tested against mocked successful login/customer/logout responses and one real rejection with a reserved `.invalid` test address. No real customer login, registration or email send was performed by the agent.
+
+Validation: TypeScript, lint and all five tests passed. Live Store API schemas, the existing registration flow, country/salutation lookups and an invalid-login response were checked read-only (apart from the expected authentication attempt). Customer routes are noindex and excluded from robots crawling. There is no separate customer database or Admin API integration. The current account overview displays identity details only; order history, editing addresses/profile and checkout are outside this change.
+
+Official reference: https://beta-developer.shopware.com/frontends/frontends-recipes/account/register.html

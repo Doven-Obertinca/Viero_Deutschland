@@ -1,8 +1,15 @@
 :root {
+  --surface-hero: #d6d5d0;
+  --surface-material: color-mix(in srgb, var(--viero-grey) 9%, transparent);
+  --surface-light: color-mix(in srgb, white 6%, transparent);
+  --brand-plane: color-mix(in srgb, var(--viero-green) 8%, transparent);
+  --brand-atmosphere: color-mix(in srgb, var(--viero-green) 9%, transparent);
+
   --viero-green: #5e7975;
   --viero-black: #2d2926;
   --viero-grey: #646566;
   --warm-white: #faf9f6;
+  --matte-white: #f5f6f3;
   --limestone: #efede7;
   --stone: #d5d0c6;
   --border: #dcd9d2;
@@ -17,11 +24,76 @@
 }
 body {
   margin: 0;
-  background: var(--warm-white);
+  background: var(--surface-hero);
+  isolation: isolate;
+  min-height: 100svh;
   color: var(--viero-black);
   font-family: var(--font-brand);
   line-height: 1.6;
 }
+/* One continuous hero surface across the entire shop, including the footer. */
+.shop-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 85% at 48% 46%,
+    var(--brand-atmosphere),
+    transparent 74%
+  );
+}
+/* Broad, non-repeating tonal passes suggest mineral plaster without grain. */
+.shop-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      173deg,
+      transparent 19%,
+      var(--surface-material) 34%,
+      transparent 51%
+    ),
+    linear-gradient(
+      8deg,
+      transparent 41%,
+      var(--surface-light) 58%,
+      transparent 79%
+    ),
+    radial-gradient(
+      ellipse 95% 48% at 78% 67%,
+      var(--surface-material),
+      transparent 68%
+    );
+}
+
+/* The same 13.5-degree cut as the artwork, scaled beyond the viewport. */
+.shop-background::after {
+  content: "";
+  position: absolute;
+  inset: -35% -24% -35% 64%;
+  transform: skewX(-13.5deg);
+  background: linear-gradient(90deg, var(--brand-plane), transparent 92%);
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --surface-material: color-mix(in srgb, var(--viero-grey) 5%, transparent);
+    --brand-plane: color-mix(in srgb, var(--viero-green) 4%, transparent);
+    --brand-atmosphere: color-mix(in srgb, var(--viero-green) 8%, transparent);
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --surface-material: color-mix(in srgb, var(--viero-grey) 4%, transparent);
+    --brand-atmosphere: color-mix(in srgb, var(--viero-green) 4%, transparent);
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -74,16 +146,14 @@ small {
   gap: 2rem;
 }
 .wordmark {
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-.wordmark span {
   display: block;
-  font-size: 0.55rem;
-  letter-spacing: 0.3em;
-  margin-top: 0.7rem;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.wordmark img {
+  display: block;
+  width: 156px;
+  height: auto;
 }
 .desktop-navigation {
   display: flex;
@@ -387,10 +457,7 @@ summary {
   }
 }
 
-/* The homepage navigation floats over the white product story. */
-body:has(.signature-hero) {
-  background: #fff;
-}
+/* The homepage navigation floats over the product story. */
 body:has(.signature-hero) .header {
   position: fixed;
   inset: 0 0 auto;
@@ -424,5 +491,16 @@ body:has(.signature-hero) .header :focus-within {
   to {
     opacity: 1;
     translate: 0 0;
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+@media (max-width: 760px) {
+  .header-actions {
+    gap: 0.65rem;
   }
 }

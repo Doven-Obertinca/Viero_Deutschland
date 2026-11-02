@@ -1,11 +1,10 @@
 .hero {
-  --paper: #fff;
   --frame-width: min(43vw, 68svh);
   --frame-left: 46%;
   --frame-top: 53%;
   --concrete-blue: #c7d3dc;
   --brand-cut: polygon(0 0, 100% 0, 76% 100%, 0 100%);
-  background: var(--paper);
+  background: transparent;
   color: var(--viero-black);
   height: calc(var(--story-count) * max(100svh, 680px));
   position: relative;
@@ -24,6 +23,7 @@
   height: 100%;
   margin: auto;
   isolation: isolate;
+  z-index: 1;
 }
 .circle {
   position: absolute;
@@ -108,7 +108,7 @@
 .copy {
   position: absolute;
   left: 7.5%;
-  top: 49%;
+  top: 43%;
   width: 22%;
   max-width: 285px;
   z-index: 3;
@@ -122,8 +122,8 @@
 }
 .description {
   font-size: clamp(0.85rem, 1.05vw, 1rem);
-  line-height: 1.65;
-  margin: 0 0 1.3rem;
+  line-height: 1.75;
+  margin: 0 0 1.65rem;
   animation: copy-enter 700ms 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .explore {
@@ -343,7 +343,7 @@
   }
   .copy {
     left: 7.5%;
-    top: 72%;
+    top: 70.5%;
     width: 70%;
     max-width: 430px;
   }

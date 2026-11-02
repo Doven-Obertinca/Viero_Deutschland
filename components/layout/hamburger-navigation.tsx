@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { BrandLogo } from "./brand-logo";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./hamburger-navigation.module.css";
 
@@ -83,7 +84,7 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
         <div className={styles.panel}>
           <div className={styles.topbar}>
             <span className={styles.wordmark}>
-              VIERO<span>DEUTSCHLAND</span>
+              <BrandLogo />
             </span>
             <button
               className={styles.trigger}

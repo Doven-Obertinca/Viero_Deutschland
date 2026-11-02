@@ -1,11 +1,15 @@
+import { BrandLogo } from "./brand-logo";
+import { AccountNavigation } from "@/components/account/account-navigation";
+import { getCustomer } from "@/lib/shopware/account";
 import Link from "next/link";
 import { getNavigation } from "@/lib/shopware/navigation";
 import { HamburgerNavigation } from "./hamburger-navigation";
 import { getContext } from "@/lib/shopware/context";
 export async function Header() {
-  const [categories, context] = await Promise.all([
+  const [categories, context, customer] = await Promise.all([
     getNavigation().catch(() => []),
     getContext().catch(() => null),
+    getCustomer().catch(() => null),
   ]);
   const items = categories
     .filter(
@@ -27,9 +31,12 @@ export async function Header() {
         aria-label="Viero Deutschland Startseite"
         className="wordmark"
       >
-        VIERO<span>DEUTSCHLAND</span>
+        <BrandLogo />
       </Link>
-      <HamburgerNavigation items={items} />
+      <div className="header-actions">
+        <AccountNavigation signedIn={!!customer} />
+        <HamburgerNavigation items={items} />
+      </div>
     </header>
   );
 }

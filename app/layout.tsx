@@ -20,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
+        <div className="shop-background" aria-hidden="true" />
         <a className="skip-link" href="#main">
           Zum Inhalt
         </a>

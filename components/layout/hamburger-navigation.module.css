@@ -14,11 +14,11 @@
   font-weight: 600;
 }
 .icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: grid;
   place-content: center;
-  gap: 6px;
+  gap: 5px;
   border-radius: 50%;
   background: color-mix(in srgb, var(--viero-green) 12%, white);
   border: 1px solid color-mix(in srgb, var(--viero-green) 18%, transparent);
@@ -29,7 +29,7 @@
 }
 .icon > span {
   display: block;
-  width: 21px;
+  width: 18px;
   height: 1.5px;
   background: var(--viero-black);
   transition:
@@ -37,7 +37,7 @@
     width 250ms ease;
 }
 .icon > span:last-child {
-  width: 15px;
+  width: 13px;
   justify-self: end;
 }
 .trigger:hover .icon {
@@ -45,7 +45,7 @@
   transform: rotate(-5deg);
 }
 .trigger:hover .icon > span:last-child {
-  width: 21px;
+  width: 18px;
 }
 .closeIcon {
   gap: 0;
@@ -54,7 +54,7 @@
   transform: translateY(0.75px) rotate(45deg);
 }
 .closeIcon > span:last-child {
-  width: 21px;
+  width: 18px;
   transform: translateY(-0.75px) rotate(-45deg);
 }
 .trigger:focus-visible {
@@ -113,16 +113,13 @@
   min-height: 64px;
 }
 .wordmark {
-  font-weight: 700;
-  font-size: 2.25rem;
-  line-height: 1;
-  letter-spacing: 0.08em;
-}
-.wordmark > span {
   display: block;
-  font-size: 0.55rem;
-  letter-spacing: 0.3em;
-  margin-top: 0.7rem;
+  line-height: 0;
+}
+.wordmark img {
+  display: block;
+  width: 156px;
+  height: auto;
 }
 .content {
   display: grid;
@@ -257,8 +254,8 @@
     font-size: 0.5rem;
   }
   .icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

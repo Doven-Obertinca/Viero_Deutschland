@@ -1,0 +1,33 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.subtitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+  white-space: nowrap;
+}
+
+.country {
+  display: block;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  line-height: 1;
+  color: var(--viero-black);
+}
+
+.credit {
+  display: block;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 0.45rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  color: var(--viero-grey);
+}

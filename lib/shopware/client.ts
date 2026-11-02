@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { shopwareConfig } from "./config";
+import { readSessionToken } from "./session";
 export class ShopwareError extends Error {
   constructor(
     public code:
@@ -9,7 +10,9 @@ export class ShopwareError extends Error {
       | "TIMEOUT"
       | "CREDENTIALS"
       | "NOT_FOUND"
-      | "RESPONSE",
+      | "RESPONSE"
+      | "REJECTED"
+      | "THROTTLED",
     public status?: number,
   ) {
     super(code);
@@ -30,6 +33,7 @@ export async function storeRequest<T>(
   } catch {
     throw new ShopwareError("CONFIGURATION");
   }
+  const contextToken = options.contextToken ?? (await readSessionToken());
   let response: Response;
   try {
     response = await fetch(`${config.url}${path}`, {
@@ -40,9 +44,7 @@ export async function storeRequest<T>(
         "sw-access-key": config.key,
         "sw-include-seo-urls": "true",
         "sw-inheritance": "true",
-        ...(options.contextToken
-          ? { "sw-context-token": options.contextToken }
-          : {}),
+        ...(contextToken ? { "sw-context-token": contextToken } : {}),
       },
       body:
         options.method === "GET"
@@ -61,11 +63,15 @@ export async function storeRequest<T>(
   }
   if (!response.ok)
     throw new ShopwareError(
-      response.status === 401 || response.status === 403
-        ? "CREDENTIALS"
-        : response.status === 404
-          ? "NOT_FOUND"
-          : "UNAVAILABLE",
+      response.status === 429
+        ? "THROTTLED"
+        : response.status === 400 || response.status === 422
+          ? "REJECTED"
+          : response.status === 401 || response.status === 403
+            ? "CREDENTIALS"
+            : response.status === 404
+              ? "NOT_FOUND"
+              : "UNAVAILABLE",
       response.status,
     );
   try {
