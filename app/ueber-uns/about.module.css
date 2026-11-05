@@ -1,0 +1,628 @@
+.page {
+  --paper: #f3eee7;
+  --mauve: #523b49;
+  --ink: #282224;
+  --edge: clamp(1.25rem, 6vw, 7rem);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  padding: calc(var(--header-height) + 2rem) var(--edge) 5.5rem;
+  background: #634655;
+  color: #fffaf5;
+  overflow: clip;
+}
+
+.heroArt {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+}
+
+.heroArt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(35 20 29 / 45%), transparent 65%);
+}
+
+.heroArt img,
+.profileArt img,
+.studyImages img,
+.closing img {
+  object-fit: cover;
+}
+
+.heroArt img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-position: 70% center;
+}
+
+.heroType {
+  position: relative;
+}
+
+.kicker,
+.scroll,
+.folio,
+.studyControl,
+.actions {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(6rem, 14vw, 15rem);
+  line-height: 0.79;
+  letter-spacing: -0.075em;
+  margin: 1.8rem 0 2rem -0.055em;
+}
+
+.hero h1 > span {
+  display: block;
+  overflow: hidden;
+  padding: 0.21em 0.13em 0.15em 0.055em;
+  margin: -0.21em -0.13em -0.15em -0.055em;
+}
+
+.hero h1 > span > span {
+  display: block;
+}
+
+.hero h1 > span:nth-child(2) {
+  margin-inline-start: 0.35em;
+  font-style: italic;
+}
+
+.scroll,
+.folio {
+  position: absolute;
+  bottom: 2rem;
+}
+
+.scroll {
+  left: var(--edge);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.scroll span {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 1rem;
+  transition: transform 240ms var(--ease);
+}
+
+.scroll:hover span {
+  transform: translateY(0.2rem);
+}
+
+.folio {
+  right: var(--edge);
+  color: #fff;
+  background: var(--mauve);
+  padding: 0.55rem 0.7rem;
+}
+
+.story {
+  scroll-margin-top: 1rem;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+  align-items: center;
+  gap: clamp(2rem, 7vw, 9rem);
+  padding: clamp(4rem, 11vw, 11rem) var(--edge);
+}
+
+.profile + .profile {
+  background: #e6dbd9;
+  grid-template-columns: minmax(0, 0.83fr) minmax(0, 1.17fr);
+}
+
+.profile + .profile .profileArt {
+  order: -1;
+  aspect-ratio: 4 / 5;
+  border-radius: 46% 46% 0 0 / 32% 32% 0 0;
+}
+
+.profile h2,
+.history h2 {
+  font: 400 clamp(2.65rem, 6vw, 7.5rem) / 0.99 var(--serif);
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+  margin: 0 0 clamp(1.75rem, 4vw, 4rem);
+}
+
+.prose,
+.timeline details > div {
+  max-width: 56ch;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.prose p {
+  margin: 0;
+}
+
+.profileArt,
+.studyImages,
+.gallery figure {
+  position: relative;
+  overflow: hidden;
+  background: #b2a299;
+}
+
+.profileArt {
+  aspect-ratio: 4 / 5;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  align-items: center;
+  gap: clamp(0.6rem, 2.5vw, 2.8rem);
+  padding: clamp(3.75rem, 9vw, 9rem) var(--edge);
+  background: #d8c9c3;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.study {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.studyImages {
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+}
+
+.studyTexture {
+  clip-path: inset(0 calc(100% - var(--reveal)) 0 0);
+}
+
+.studyLine {
+  position: absolute;
+  inset-block: 0;
+  left: var(--reveal);
+  width: 2px;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px #30252955;
+}
+
+.studyControl {
+  display: grid;
+  grid-template-columns: auto minmax(0, 24rem) auto;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem var(--edge);
+}
+
+.studyControl input {
+  min-width: 0;
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: #e8becf;
+  cursor: ew-resize;
+}
+
+.studyControl input:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 3px;
+}
+
+.history {
+  padding: clamp(4rem, 11vw, 11rem) var(--edge);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-content: start;
+  column-gap: clamp(2rem, 8vw, 9rem);
+}
+
+.history .kicker {
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+}
+
+.timeline {
+  border-top: 1px solid #827477;
+}
+
+.timeline details {
+  border-bottom: 1px solid #827477;
+}
+
+.timeline summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  padding: 0.6rem 0;
+  font: 400 clamp(1.7rem, 4vw, 3.6rem) / 1.05 var(--serif);
+  letter-spacing: -0.055em;
+}
+
+.timeline summary::-webkit-details-marker {
+  display: none;
+}
+
+.timeline summary::after {
+  content: "+" / "";
+  font: 400 1.2rem var(--font-brand);
+}
+
+.timeline details[open] summary::after {
+  content: "−" / "";
+}
+
+.timeline details > div {
+  padding: 0.5rem 2rem 1.2rem 0;
+}
+
+.timeline details[open] summary,
+.timeline summary:hover {
+  color: var(--mauve);
+}
+
+.unavailable {
+  padding: 5rem var(--edge);
+}
+
+.unavailable a {
+  text-decoration: underline;
+}
+
+.closing {
+  min-height: 82svh;
+  display: grid;
+  align-items: end;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(2rem, 6vw, 6rem) var(--edge);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.closing img {
+  z-index: -1;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  gap: 0.4rem;
+}
+
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  transition:
+    background 240ms var(--ease),
+    color 240ms var(--ease);
+}
+
+.actions a:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heroArt {
+    animation: hero-reveal 900ms var(--ease) both;
+  }
+
+  .hero h1 > span > span {
+    animation: line-in 0.95s 100ms var(--ease) both;
+  }
+
+  .hero h1 > span:nth-child(2) > span {
+    animation-delay: 230ms;
+  }
+
+  .hero {
+    position: sticky;
+    top: 0;
+  }
+
+  .hero:has(:focus-visible) {
+    position: relative;
+  }
+
+  .story {
+    position: relative;
+    z-index: 1;
+    background: var(--paper);
+  }
+
+  .story > [data-scroll-scene] {
+    position: sticky;
+    top: min(0px, calc(100svh - var(--scene-height, 100svh)));
+    min-height: 100svh;
+  }
+
+  .story > [data-scroll-scene]:not(.closing):has(:focus-visible) {
+    position: relative;
+  }
+
+  .profile,
+  .history {
+    background: var(--paper);
+  }
+
+  .materialScene {
+    display: grid;
+    align-content: center;
+    background: var(--ink);
+  }
+
+  .materialScene .study {
+    width: 100%;
+  }
+
+  @supports (animation-timeline: view()) {
+    .heroArt img {
+      animation: hero-parallax linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 100svh;
+    }
+
+    .heroType {
+      --travel: clamp(2rem, 8vh, 6rem);
+      animation: scroll-type linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 100svh;
+    }
+
+    .profile,
+    .gallery,
+    .history,
+    .closing {
+      view-timeline-name: --about-section;
+    }
+
+    .profileArt,
+    .studyImages,
+    .closing {
+      --image-travel: 8%;
+      view-timeline-name: --about-image;
+    }
+
+    .closing {
+      view-timeline-name: --about-section, --about-image;
+    }
+
+    .profileArt img,
+    .studyImages img,
+    .closing img {
+      animation: drift linear both;
+      animation-timeline: --about-image;
+      animation-range: cover;
+    }
+
+    .profileCopy,
+    .gallery figure,
+    .history h2,
+    .timeline {
+      animation: section-parallax linear both;
+      animation-timeline: --about-section;
+      animation-range: cover;
+    }
+
+    .profileCopy {
+      --travel: clamp(2rem, 5vw, 5rem);
+    }
+
+    .gallery figure {
+      --travel: clamp(1.75rem, 5vw, 5rem);
+    }
+
+    .gallery figure:nth-child(2) {
+      --travel: clamp(-4rem, -4vw, -1.25rem);
+    }
+
+    .gallery figure:nth-child(3) {
+      --travel: clamp(1.25rem, 3vw, 3rem);
+    }
+
+    .history h2 {
+      --travel: clamp(-4rem, -4vw, -1.5rem);
+    }
+
+    .timeline {
+      --travel: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .timeline:focus-within {
+      animation: none;
+    }
+
+    @media (max-width: 700px) {
+      .heroType {
+        --travel: 2.5rem;
+      }
+
+      .profileCopy,
+      .gallery figure:nth-child(n),
+      .history h2,
+      .timeline {
+        --travel: 1rem;
+      }
+
+      .gallery figure:nth-child(2) {
+        --travel: 0.5rem;
+      }
+
+      .profileArt,
+      .studyImages,
+      .closing {
+        --image-travel: 5%;
+      }
+    }
+  }
+}
+
+@keyframes hero-parallax {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: translateY(7%) scale(1.16);
+  }
+}
+
+@keyframes section-parallax {
+  from {
+    transform: translateY(var(--travel));
+  }
+  to {
+    transform: translateY(calc(-1 * var(--travel)));
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes line-in {
+  from {
+    transform: translateY(115%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(calc(-1 * var(--image-travel))) scale(1.18);
+  }
+  to {
+    transform: translateY(var(--image-travel)) scale(1.18);
+  }
+}
+
+@keyframes scroll-type {
+  to {
+    transform: translateY(calc(-1 * var(--travel)));
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    align-items: start;
+  }
+
+  .heroArt img {
+    object-position: center;
+  }
+
+  .heroArt::after {
+    background: linear-gradient(
+      180deg,
+      rgb(35 20 29 / 65%),
+      rgb(35 20 29 / 30%) 22%,
+      transparent 46%,
+      transparent 73%,
+      rgb(35 20 29 / 65%)
+    );
+  }
+
+  .hero h1 {
+    font-size: clamp(4.2rem, 16vw, 7rem);
+    margin-top: 1rem;
+  }
+
+  .hero h1 > span:nth-child(2) {
+    margin-inline-start: 0.18em;
+  }
+
+  .scroll {
+    bottom: 1.4rem;
+  }
+
+  .folio {
+    bottom: 1.5rem;
+  }
+
+  .profile,
+  .profile + .profile,
+  .history {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile + .profile .profileArt {
+    order: 0;
+  }
+
+  .profileArt {
+    aspect-ratio: 5 / 4;
+  }
+
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gallery figure:first-child {
+    width: 78%;
+  }
+
+  .gallery figure:nth-child(2) {
+    width: 88%;
+    justify-self: end;
+  }
+
+  .studyImages {
+    aspect-ratio: 4 / 5;
+  }
+
+  .closing {
+    min-height: 70svh;
+  }
+
+  .actions {
+    display: grid;
+  }
+}

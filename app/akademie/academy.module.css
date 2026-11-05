@@ -1,0 +1,281 @@
+.page {
+  --paper: #f0eee6;
+  --ink: #201f1a;
+  --edge: clamp(1.25rem, 7vw, 9rem);
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 2rem) var(--edge)
+    clamp(7rem, 16vh, 11rem);
+  isolation: isolate;
+  overflow: clip;
+  background: #23251e url("/brand/akademie/poster.jpg") center / cover no-repeat;
+  color: #fffaf1;
+}
+
+.hero video,
+.hero::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero video {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero::before {
+  content: "";
+  z-index: -1;
+  background:
+    linear-gradient(0deg, rgb(17 19 15 / 86%), transparent 72%),
+    linear-gradient(180deg, rgb(17 19 15 / 65%), transparent 27%);
+}
+
+.hero h1 {
+  overflow: hidden;
+  margin: 0;
+  padding-block: 0.05em 0.15em;
+  font: 400 clamp(3.65rem, 13vw, 15rem) / 0.86 var(--display);
+  letter-spacing: -0.065em;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.scroll,
+.playback {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vw, 4rem);
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 1px solid rgb(255 250 241 / 75%);
+  border-radius: 50%;
+  background: rgb(20 20 15 / 46%);
+  color: inherit;
+  font-size: 1.2rem;
+  transition:
+    background 220ms var(--ease),
+    color 220ms var(--ease);
+}
+
+.scroll {
+  left: var(--edge);
+}
+
+.playback {
+  right: var(--edge);
+}
+
+.scroll:hover,
+.playback:hover {
+  background: #fffaf1;
+  color: #23251e;
+}
+
+.panel {
+  display: grid;
+  align-content: center;
+  padding: clamp(5rem, 11vw, 11rem) var(--edge);
+  background: var(--paper);
+}
+
+.content {
+  width: 100%;
+  max-width: 86rem;
+  margin-inline: auto;
+}
+
+.panel h2 {
+  max-width: 15ch;
+  margin: 0 0 clamp(1.75rem, 4vw, 4rem);
+  font: 400 clamp(2.85rem, 7.25vw, 9rem) / 0.94 var(--display);
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.intro p,
+.syllabus p {
+  max-width: 48ch;
+  font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  line-height: 1.65;
+}
+
+.content a {
+  display: inline-block;
+  margin-block-start: 1.15rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid currentColor;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition:
+    background-color 220ms var(--ease),
+    color 220ms var(--ease);
+}
+
+.content a:hover {
+  background: #c7d1ae;
+  color: var(--ink);
+  border-color: #c7d1ae;
+}
+
+.offers {
+  background: #252820;
+  color: #f3f0e5;
+}
+
+.offerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem clamp(2rem, 6vw, 7rem);
+}
+
+.offer {
+  border-top: 1px solid #8f9580;
+  padding-top: 1.25rem;
+}
+
+.offer h3 {
+  margin: 0 0 0.5rem;
+  font: 400 clamp(1.7rem, 3.2vw, 3.4rem) / 1.05 var(--display);
+}
+
+.offer h3:first-child {
+  color: #c7d1ae;
+  font: 600 0.85rem / 1.5 var(--font-brand);
+  letter-spacing: 0.16em;
+}
+
+.offer p {
+  max-width: 50ch;
+}
+
+.offer p:empty {
+  display: none;
+}
+
+.syllabus {
+  background: #ced5bc;
+}
+
+.syllabus ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 6vw, 6rem);
+  padding: 0;
+  list-style-position: inside;
+  margin-block: 0 2.5rem;
+}
+
+.syllabus li {
+  border-top: 1px solid #777f69;
+  padding-block: 1rem;
+  font: 400 clamp(1.25rem, 2.5vw, 2.6rem) / 1.15 var(--display);
+}
+
+.enquiry {
+  background: #e8e3d8;
+}
+
+.formLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 6rem);
+  width: 100%;
+  max-width: 86rem;
+  margin-inline: auto;
+}
+
+.formLayout h2 {
+  font-size: clamp(2.85rem, 6vw, 7rem);
+}
+
+.unavailable {
+  margin: 0;
+  padding: 5rem var(--edge);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    position: sticky;
+    top: 0;
+  }
+
+  .hero:has(:focus-visible) {
+    position: relative;
+  }
+
+  .hero h1 span {
+    animation: title-in 1.2s 180ms var(--ease) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .hero video {
+      animation: film-drift linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 100svh;
+    }
+
+    .panel {
+      view-timeline-name: --academy-panel;
+    }
+
+    .content {
+      animation: panel-rise linear both;
+      animation-timeline: --academy-panel;
+      animation-range: entry 0% entry 100%;
+    }
+
+    .content:focus-within {
+      animation: none;
+    }
+  }
+}
+
+@keyframes title-in {
+  from {
+    transform: translateY(112%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes film-drift {
+  to {
+    transform: translateY(6%) scale(1.15);
+  }
+}
+
+@keyframes panel-rise {
+  from {
+    transform: translateY(clamp(1.5rem, 5vw, 4rem));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .offerGrid,
+  .syllabus ul,
+  .formLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,162 @@
+@font-face {
+  font-family: Shopware Open Sans;
+  src: url("/brand/kontakt/OpenSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Shopware Open Sans;
+  src: url("/brand/kontakt/OpenSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+.page {
+  background: #f0f0f0;
+  color: #2b3136;
+  font:
+    400 14px / 1.5 "Shopware Open Sans",
+    Arial,
+    sans-serif;
+}
+
+.container {
+  width: min(100%, 1280px);
+  margin-inline: auto;
+  padding: 50px clamp(24px, 4.45vw, 56px) 28px;
+}
+
+.container h1 {
+  margin: 0 0 12px;
+  color: #000;
+  font:
+    700 28px / 1.45 "Shopware Open Sans",
+    Arial,
+    sans-serif;
+  letter-spacing: normal;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+  padding-inline: 8px;
+}
+
+.field {
+  grid-column: span 12;
+  min-width: 0;
+}
+
+.field[data-width="4"] {
+  grid-column: span 4;
+}
+.field[data-width="6"] {
+  grid-column: span 6;
+}
+
+.field label {
+  display: block;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #bfbfbf;
+  border-radius: 0;
+  color: inherit;
+  background: white;
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.requiredNote {
+  margin: 24px 0 8px;
+}
+
+.privacy {
+  display: grid;
+  grid-template-columns: 18% 1fr;
+  align-items: start;
+  margin-top: 4px;
+}
+
+.privacy input {
+  margin: 4px 0 0;
+  justify-self: start;
+}
+
+.privacy span {
+  text-transform: uppercase;
+}
+
+.submitRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.privacy button,
+.submitRow button {
+  padding: 10px 27px;
+  margin: 0 0 8px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: #000;
+  color: white;
+  font:
+    700 16px / 1 "Shopware Open Sans",
+    Arial,
+    sans-serif;
+  text-transform: uppercase;
+}
+
+.privacy a {
+  text-decoration: underline;
+}
+.submitRow button:disabled {
+  opacity: 0.6;
+}
+
+.privacyDialog {
+  width: min(48rem, calc(100% - 2rem));
+  max-height: 80dvh;
+  padding: 2rem;
+  border: 1px solid #bfbfbf;
+  color: inherit;
+}
+
+.privacyDialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+.privacyDialog > button {
+  float: right;
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+}
+.privacyDialog a {
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .field[data-width] {
+    grid-column: span 12;
+  }
+  .fields {
+    padding-inline: 0;
+  }
+  .privacy {
+    grid-template-columns: 1.75rem 1fr;
+  }
+  .privacy button {
+    padding-inline: 0.75rem;
+  }
+}

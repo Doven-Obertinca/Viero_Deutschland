@@ -1,0 +1,225 @@
+.footerButton,
+.buttons button,
+.dialog header > button {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
+  background: #e5e5e5;
+  color: var(--viero-black);
+  box-shadow:
+    5px 5px 12px #c6c6c3,
+    -5px -5px 12px #fff;
+  padding: 0.9rem 1.2rem;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.footerButton:hover,
+.buttons button:hover,
+.dialog header > button:hover {
+  box-shadow:
+    inset 3px 3px 7px #c6c6c3,
+    inset -3px -3px 7px #fff;
+}
+.footerButton:focus-visible,
+.buttons button:focus-visible,
+.dialog button:focus-visible,
+.dialog input:focus-visible,
+.dialog summary:focus-visible,
+.banner a:focus-visible {
+  outline: 2px solid var(--viero-green);
+  outline-offset: 5px;
+}
+.buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.banner {
+  position: fixed;
+  z-index: 30;
+  inset: auto auto 1.5rem 1.5rem;
+  max-width: 700px;
+  width: calc(100% - 3rem);
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
+  background: #e5e5e5;
+  color: var(--viero-black);
+  box-shadow:
+    10px 10px 40px rgba(45, 41, 38, 0.22),
+    inset 0 1px 0 white;
+}
+.eyebrow {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.75rem;
+}
+.banner h2 {
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.75rem;
+}
+.banner p:not(.eyebrow) {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
+}
+.banner a,
+.dialog a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+.buttons button:first-child {
+  color: #334f4b;
+}
+.dialog {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+  background: #e5e5e5;
+  color: var(--viero-black);
+  width: min(820px, calc(100% - 2rem));
+  max-height: 85svh;
+  padding: 2rem;
+  box-shadow: 15px 15px 60px rgba(45, 41, 38, 0.25);
+}
+.dialog::backdrop {
+  background: rgba(45, 41, 38, 0.35);
+}
+.dialog header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c8c8c5;
+}
+.dialog h2 {
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.dialog header > button {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.7rem;
+}
+.description,
+.note {
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+.group {
+  padding: 1.5rem 0;
+  border-top: 1px solid #c8c8c5;
+}
+.group:first-child {
+  border: 0;
+}
+.groupHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: center;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.groupHeading small {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  margin-top: 0.3rem;
+}
+.group input {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  accent-color: var(--viero-green);
+}
+.group > p,
+.group li > p {
+  font-size: 0.75rem;
+  line-height: 1.8;
+  margin: 0.75rem 0;
+}
+.group details {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+}
+.group summary {
+  cursor: pointer;
+  list-style: none;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.group summary::-webkit-details-marker {
+  display: none;
+}
+.group ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.group li {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: #e5e5e5;
+  box-shadow:
+    inset 3px 3px 7px #c6c6c3,
+    inset -3px -3px 7px white;
+  margin-bottom: 0.75rem;
+}
+.group li label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: start;
+}
+.group code {
+  display: block;
+  font-size: 0.65rem;
+  overflow-wrap: anywhere;
+  margin-top: 0.3rem;
+}
+.dialog footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #c8c8c5;
+}
+@media (max-width: 639px) {
+  .banner {
+    inset: auto 0.75rem 0.75rem;
+    width: calc(100% - 1.5rem);
+    padding: 1.25rem;
+    border-radius: 18px;
+  }
+  .banner h2 {
+    font-size: 1.4rem;
+  }
+  .buttons {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .buttons button {
+    padding: 0.75rem;
+  }
+  .dialog {
+    padding: 1.25rem;
+    border-radius: 18px;
+  }
+  .dialog header {
+    gap: 1rem;
+  }
+  .dialog header > button {
+    padding: 0.5rem;
+    font-size: 0.65rem;
+  }
+  .groupHeading {
+    font-size: 1rem;
+  }
+}

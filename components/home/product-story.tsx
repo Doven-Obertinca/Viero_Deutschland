@@ -81,7 +81,16 @@ export function ProductStory({ products }: { products: StoryProduct[] }) {
               href={product?.href || "/produkte"}
             >
               {product ? `${product.name} entdecken` : "Kollektion entdecken"}{" "}
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M12 5v14M5 12h14"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
             </Link>
           </div>
           <h1 className={styles.title}>

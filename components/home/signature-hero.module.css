@@ -205,7 +205,7 @@
     transform: translateX(110%);
   }
   .explore:hover > span {
-    transform: rotate(45deg);
+    transform: scale(1.08);
     background: rgba(255, 255, 255, 0.26);
   }
 }
@@ -496,5 +496,17 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explore,
+  .explore > span {
+    animation: none;
+    transition: none;
+  }
+  .explore:hover > span,
+  .explore:active {
+    transform: none;
   }
 }

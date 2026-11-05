@@ -1,0 +1,245 @@
+.footer {
+  padding: clamp(3rem, 7vw, 7rem) 3% 2rem;
+  color: var(--viero-black);
+}
+.surface {
+  padding: clamp(2rem, 4.5vw, 5rem);
+  border-radius: 34px;
+  background: #e5e5e5;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    16px 16px 36px rgba(45, 41, 38, 0.15),
+    -12px -12px 30px rgba(255, 255, 255, 0.65),
+    inset 0 1px 0 white;
+}
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 4rem);
+}
+.logo {
+  display: inline-block;
+}
+.logo img {
+  width: clamp(140px, 15vw, 220px);
+  height: auto;
+}
+.contact {
+  max-width: 340px;
+  border-radius: 18px;
+  box-shadow:
+    inset 5px 5px 12px #c6c6c3,
+    inset -5px -5px 12px #fff;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+.contact p {
+  font-size: 0.65rem;
+  line-height: 1.7;
+  margin: 0 0 0.5rem;
+}
+.contact a {
+  display: table;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  margin-top: 0.3rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.contact a:last-child {
+  margin-top: 1.25rem;
+  font-size: 0.7rem;
+}
+.navigation h2,
+.social h2 {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  margin: 0.3rem 0 1.75rem;
+}
+.navigation ul,
+.social ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navigation li,
+.social li {
+  margin: 0 0 0.85rem;
+}
+.navigation a,
+.social a {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.4em;
+  transition:
+    color 180ms ease,
+    text-decoration-color 180ms ease;
+}
+.navigation a:hover,
+.social a:hover {
+  color: #334f4b;
+  text-decoration-color: currentColor;
+}
+.social p {
+  max-width: 24ch;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  margin: 0 0 1.5rem;
+}
+.utilities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-top: 1px solid #c9c9c6;
+  margin-top: clamp(2rem, 4vw, 4rem);
+  padding-top: 1.75rem;
+}
+.utilities > span {
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+}
+.utilities > a {
+  font-size: 0.7rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.footer a:focus-visible {
+  outline: 2px solid var(--viero-green);
+  outline-offset: 5px;
+}
+@media (min-width: 1920px) {
+  .surface {
+    max-width: 1800px;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 1099px) {
+  .main {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .brand {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  .contact {
+    margin: 0;
+    max-width: none;
+  }
+  .utilities {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 639px) {
+  .footer {
+    padding: 3rem 4% 1.25rem;
+  }
+  .surface {
+    padding: 1.5rem;
+    border-radius: 24px;
+  }
+  .main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.25rem;
+  }
+  .brand {
+    display: block;
+  }
+  .logo img {
+    width: 160px;
+  }
+  .contact {
+    margin-top: 1.75rem;
+    padding: 1.2rem;
+  }
+  .navigation h2,
+  .social h2 {
+    font-size: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .navigation a,
+  .social a {
+    font-size: 0.8rem;
+  }
+  .social {
+    grid-column: 1/-1;
+    border-top: 1px solid #ccc;
+    padding-top: 1.5rem;
+  }
+  .social ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  .social p {
+    max-width: 34ch;
+  }
+  .utilities {
+    align-items: start;
+    flex-direction: column;
+    gap: 1.3rem;
+    margin-top: 2rem;
+  }
+  .utilities > span {
+    font-size: 0.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .navigation a,
+  .social a {
+    transition: none;
+  }
+}
+
+.priceNotice {
+  margin-top: 3rem;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: #51524f;
+}
+.priceNotice p {
+  margin: 0;
+}
+.priceNotice a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.social ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.social li {
+  margin: 0;
+}
+.social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow:
+    4px 4px 9px #c8c8c8,
+    -4px -4px 9px #fff;
+  text-decoration: none;
+}
+.social a:hover {
+  color: #334f4b;
+  box-shadow:
+    inset 3px 3px 7px #c8c8c8,
+    inset -3px -3px 7px #fff;
+}
+.social a svg {
+  flex-shrink: 0;
+}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getProduct, getVariants } from "@/lib/shopware/products";
 import { getContext } from "@/lib/shopware/context";
@@ -11,15 +10,33 @@ import {
   siteUrl,
   jsonLd,
 } from "@/lib/seo";
-import { ProductGallery } from "@/components/product/media";
 import {
-  ProductPrice,
-  ProductOptions,
-  ProductBadge,
-} from "@/components/product/products";
+  ProductResources,
+  ProductDownloads,
+} from "@/components/product/product-resources";
+import { ProductExperience } from "@/components/product/product-experience";
 import { Container, Breadcrumbs } from "@/components/ui/primitives";
 import { CommerceState } from "@/components/commerce-state";
 export const dynamic = "force-dynamic";
+function interactiveProduct(p: import("@/lib/shopware/types").Product) {
+  return {
+    id: p.id,
+    productNumber: p.productNumber,
+    parentId: p.parentId,
+    name: p.name,
+    translated: {
+      name: p.translated?.name,
+      description: p.translated?.description,
+    },
+    cover: p.cover,
+    media: p.media,
+    options: p.options,
+    calculatedPrice: p.calculatedPrice,
+    available: p.available,
+    deliveryTime: p.deliveryTime,
+    manufacturer: p.manufacturer,
+  };
+}
 type Props = { params: Promise<{ slug: string[] }> };
 export async function generateMetadata({ params }: Props) {
   try {
@@ -96,39 +113,22 @@ export default async function ProductPage({ params }: Props) {
       : {}),
   };
   return (
-    <Container>
-      <Breadcrumbs
-        items={[{ label: "Produkte", href: "/produkte" }, { label: name }]}
-      />
-      <div className="product-detail">
-        <ProductGallery images={images} name={name} />
-        <div>
-          <p className="eyebrow">{product.manufacturer?.name || "VIERO"}</p>
-          <h1>{name}</h1>
-          <p className="muted">Artikelnummer {product.productNumber}</p>
-          <ProductPrice
-            product={product}
-            currency={context.currency.isoCode}
-            taxState={context.taxState}
-          />
-          <ProductBadge product={product} />
-          <p className="description">
-            {plainText(product.translated?.description)}
-          </p>
-          <nav aria-label="Produktkategorien">
-            {product.categories?.map((category) => (
-              <Link
-                className="variant-link"
-                key={category.id}
-                href={`/kategorie/${category.id}`}
-              >
-                {category.translated?.name || category.name}
-              </Link>
-            ))}
-          </nav>
-          <ProductOptions product={product} variants={variants || []} />
-        </div>
-      </div>
+    <>
+      <Container>
+        <Breadcrumbs
+          items={[{ label: "Produkte", href: "/produkte" }, { label: name }]}
+        />
+      </Container>
+      <ProductExperience
+        product={interactiveProduct(product)}
+        variants={(variants || []).map(interactiveProduct)}
+        currency={context.currency.isoCode}
+        taxState={context.taxState}
+        description={plainText(product.translated?.description) || ""}
+        imageDownloads={<ProductDownloads product={product} />}
+      >
+        <ProductResources product={product} />
+      </ProductExperience>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLd(structured) }}
@@ -151,6 +151,6 @@ export default async function ProductPage({ params }: Props) {
           }),
         }}
       />
-    </Container>
+    </>
   );
 }

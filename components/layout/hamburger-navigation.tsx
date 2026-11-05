@@ -133,10 +133,7 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
                     <span className={styles.number}>
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span>{item.name}</span>
-                    <span className={styles.arrow} aria-hidden="true">
-                      ↗
-                    </span>
+                    <span className={styles.linkLabel}>{item.name}</span>
                   </Link>
                 ),
               )}
@@ -145,7 +142,7 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
           <div className={styles.bottom}>
             <span>DEKORATIVE OBERFLÄCHEN. ITALIENISCHE HANDWERKSKUNST.</span>
             <Link href="/produkte" onClick={close}>
-              Die Kollektion entdecken ↗
+              Die Kollektion entdecken
             </Link>
           </div>
         </div>

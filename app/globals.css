@@ -16,11 +16,15 @@
   --font-brand: Arial, "Helvetica Neue", sans-serif;
   --font-display: var(--font-brand);
   --space: clamp(1.25rem, 4vw, 4rem);
+  --header-height: 5.5rem;
   --duration: 240ms;
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 * {
   box-sizing: border-box;
+}
+html {
+  scroll-padding-top: var(--header-height);
 }
 body {
   margin: 0;
@@ -137,12 +141,19 @@ small {
   padding: 0 var(--space);
 }
 .header {
-  min-height: 112px;
-  padding: 1.5rem var(--space);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-height);
+  padding: 0 var(--space);
+  background: transparent;
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid transparent;
   gap: 2rem;
 }
 .wordmark {
@@ -152,7 +163,7 @@ small {
 }
 .wordmark img {
   display: block;
-  width: 156px;
+  width: clamp(6.25rem, 12vw, 9rem);
   height: auto;
 }
 .desktop-navigation {
@@ -391,7 +402,7 @@ summary {
   top: -100px;
   background: var(--warm-white);
   padding: 1rem;
-  z-index: 10;
+  z-index: 25;
 }
 .skip-link:focus {
   top: 1rem;
@@ -424,8 +435,8 @@ summary {
   }
 }
 @media (max-width: 640px) {
-  .header {
-    min-height: 88px;
+  :root {
+    --header-height: 4.5rem;
   }
   .grid,
   .product-detail {
@@ -457,16 +468,33 @@ summary {
   }
 }
 
-/* The homepage navigation floats over the product story. */
-body:has(.signature-hero) .header {
+/* The two full-screen openings start behind the shared navigation. */
+body:has(.signature-hero, [data-fullscreen-hero]) .header {
   position: fixed;
   inset: 0 0 auto;
-  z-index: 10;
-  background: transparent;
-  color: var(--viero-black);
-  border: 0;
-  min-height: 112px;
+}
+body:has(.signature-hero) .header {
   padding-inline: 7.5%;
+}
+.header[data-scrolled] {
+  background: rgb(40 28 36 / 76%);
+  border-bottom-color: rgb(255 250 245 / 25%);
+}
+:is(.header[data-scrolled], body:has([data-fullscreen-hero]) .header)
+  .wordmark
+  > span {
+  filter: brightness(0) invert(1);
+}
+:is(.header[data-scrolled], body:has([data-fullscreen-hero]) .header)
+  :is(.header-actions > button, .header-actions > details > summary) {
+  color: #fffaf5;
+}
+:is(.header[data-scrolled], body:has([data-fullscreen-hero]) .header)
+  .header-actions
+  > details
+  > summary
+  svg {
+  color: var(--viero-black);
 }
 .home-editorial {
   border-top: 0;

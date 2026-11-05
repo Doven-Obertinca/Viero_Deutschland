@@ -1,0 +1,340 @@
+.resources {
+  margin: clamp(4rem, 8vw, 9rem) 7.5%;
+  color: #252d30;
+}
+.resources header > p,
+.label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+.resources h2 {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 1.05;
+  margin: 1.5rem 0 4rem;
+}
+.information {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 10%;
+}
+.resources h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0 1.75rem;
+}
+.copy {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  max-width: 58ch;
+}
+.copy a {
+  text-decoration: underline;
+}
+.specs {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+.specs > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid #c6ceca;
+}
+.specs dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.specs dt {
+  color: #4b5756;
+}
+.downloads {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10%;
+  margin-top: 5rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  background: #e8edef;
+  border-radius: 24px;
+  box-shadow:
+    7px 7px 20px #aab2af50,
+    -7px -7px 20px #ffffff80;
+}
+.downloads h3 {
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  margin: 1.5rem 0;
+}
+.download {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid #cbd3d5;
+}
+.download:last-child {
+  border: 0;
+}
+.download > span:nth-child(2) {
+  flex: 1;
+  font-size: 0.9rem;
+}
+.download small {
+  display: block;
+  font-size: 0.5rem;
+  letter-spacing: 0.13em;
+  margin-bottom: 0.5rem;
+}
+.documentIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 52px;
+  border-radius: 10px;
+  box-shadow:
+    3px 3px 7px #cbd3d9,
+    -3px -3px 7px white;
+  flex-shrink: 0;
+}
+.documentIcon svg {
+  width: 24px;
+  height: 24px;
+}
+.open {
+  font-size: 0.65rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+.download:hover .open {
+  color: #334f4b;
+}
+.resources a:focus-visible,
+.resources button:focus-visible {
+  outline: 2px solid #334f4b;
+  outline-offset: 5px;
+}
+.films {
+  margin-top: 5rem;
+}
+.films > h3 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  letter-spacing: -0.05em;
+}
+.video {
+  margin-top: 2rem;
+}
+.videoCover {
+  position: relative;
+  min-height: 400px;
+  padding: clamp(2rem, 5vw, 5rem);
+  background: #e8edef;
+  border-radius: 24px;
+  box-shadow:
+    inset 6px 6px 14px #cbd3d9,
+    inset -6px -6px 14px white;
+}
+.videoNumber {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+.videoCover p {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  letter-spacing: -0.06em;
+  line-height: 1.1;
+  margin: 2rem 0;
+}
+.videoCover p span {
+  color: #5c7773;
+}
+.videoCover button {
+  border: 1px solid #fff8;
+  border-radius: 12px;
+  background: #e8edef;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  box-shadow:
+    4px 4px 10px #cbd3d9,
+    -4px -4px 10px white;
+}
+.videoCover small {
+  display: block;
+  font-size: 0.6rem;
+  line-height: 1.6;
+  margin-top: 1.5rem;
+}
+.player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 18px;
+  background: #202822;
+}
+.video > a {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.65rem;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+@media (max-width: 760px) {
+  .resources {
+    margin: 4rem 7%;
+  }
+  .resources h2 {
+    margin-bottom: 2.5rem;
+  }
+  .information,
+  .downloads {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .downloads {
+    margin-top: 3rem;
+    padding: 1.5rem;
+  }
+  .downloads h3 {
+    margin-bottom: 0;
+  }
+  .download {
+    gap: 0.75rem;
+  }
+  .download > span:nth-child(2) {
+    font-size: 0.8rem;
+  }
+  .open {
+    font-size: 0.6rem;
+  }
+  .videoCover {
+    min-height: 350px;
+  }
+  .specs > div {
+    grid-template-columns: 1fr 1.1fr;
+  }
+  .films {
+    margin-top: 3rem;
+  }
+}
+
+.downloadsCompact {
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: #e8edef;
+  box-shadow:
+    inset 3px 3px 8px #cbd3d980,
+    inset -3px -3px 8px #ffffffb3;
+}
+.downloadsCompact .label {
+  font-size: 0.5rem;
+  margin: 0 0 0.7rem;
+}
+.downloadsCompact h3 {
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  margin: 0 0 0.7rem;
+}
+.downloadsCompact .download {
+  padding: 1rem 0;
+  gap: 0.8rem;
+}
+.downloadsCompact .download > span:nth-child(2) {
+  font-size: 0.75rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.downloadsCompact .documentIcon {
+  width: 34px;
+  height: 42px;
+  border-radius: 8px;
+}
+.downloadsCompact .documentIcon svg {
+  width: 20px;
+  height: 20px;
+}
+.downloadsCompact .open {
+  font-size: 0.6rem;
+}
+.downloadsCompact a:focus-visible {
+  outline: 2px solid #334f4b;
+  outline-offset: 4px;
+}
+@media (max-width: 760px) {
+  .downloadsCompact {
+    padding: 1rem;
+    margin-top: 1.25rem;
+  }
+  .downloadsCompact .download {
+    gap: 0.65rem;
+  }
+}
+
+.information {
+  grid-template-columns: minmax(0, 1fr);
+}
+.information .copy {
+  max-width: 78ch;
+}
+
+.withVideo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  column-gap: 7%;
+  align-items: start;
+}
+.withVideo > header {
+  grid-column: 1;
+  grid-row: 1;
+}
+.withVideo h2 {
+  font-size: clamp(2.5rem, 4vw, 5rem);
+  margin-bottom: 2.5rem;
+}
+.withVideo .information {
+  grid-column: 1;
+  grid-row: 2;
+}
+.withVideo .films {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin-top: 0;
+  min-width: 0;
+}
+.withVideo .films > h3 {
+  font-size: clamp(1.4rem, 2.2vw, 2.5rem);
+  margin-bottom: 1.5rem;
+}
+.withVideo .video {
+  margin-top: 1.5rem;
+}
+.withVideo .videoCover {
+  min-height: 360px;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+.withVideo .videoCover p {
+  font-size: clamp(2rem, 3.6vw, 4rem);
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .withVideo {
+    display: block;
+  }
+  .withVideo h2 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+  .withVideo .films {
+    margin-top: 3rem;
+  }
+  .withVideo .videoCover {
+    min-height: 320px;
+  }
+  .withVideo .videoCover p {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}

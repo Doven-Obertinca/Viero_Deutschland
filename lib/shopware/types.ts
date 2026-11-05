@@ -6,6 +6,8 @@ export const seoSchema = z.object({
 export const mediaSchema = z.object({
   id: z.string().optional(),
   url: z.string(),
+  mimeType: z.string().nullish(),
+  fileExtension: z.string().nullish(),
   alt: z.string().nullish(),
   title: z.string().nullish(),
 });
@@ -69,8 +71,30 @@ export const productSchema = z
         z.object({
           id: z.string(),
           name: z.string().nullish(),
-          group: z.object({ name: z.string().nullish() }).nullish(),
+          colorHexCode: z.string().nullish(),
+          media: mediaSchema.nullish(),
+          group: z
+            .object({
+              name: z.string().nullish(),
+              displayType: z.string().nullish(),
+            })
+            .nullish(),
         }),
+      )
+      .optional(),
+    properties: z
+      .array(
+        z
+          .object({
+            id: z.string(),
+            name: z.string().nullish(),
+            colorHexCode: z.string().nullish(),
+            group: z
+              .object({ id: z.string().optional(), name: z.string().nullish() })
+              .passthrough()
+              .nullish(),
+          })
+          .passthrough(),
       )
       .optional(),
     categories: z.array(categorySchema).optional(),

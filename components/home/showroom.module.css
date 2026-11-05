@@ -1,0 +1,358 @@
+.chapter {
+  padding-block: clamp(4rem, 7vw, 8rem) clamp(3rem, 6vw, 7rem);
+  color: var(--viero-black);
+}
+.invitation {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  max-inline-size: 1800px;
+  margin-inline: auto;
+  padding: 0 7.5% clamp(3rem, 6vw, 6rem);
+}
+.marker {
+  grid-column: 1 / 4;
+  margin: 0;
+  padding-block-start: 1rem;
+  font-size: 0.6rem;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+}
+.invitation h2 {
+  grid-column: 3 / 13;
+  margin: 2.5rem 0 0;
+  font-size: clamp(4rem, 12.5vw, 14rem);
+  line-height: 0.95;
+  letter-spacing: -0.075em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.headline {
+  grid-column: 8 / 13;
+  max-inline-size: 24ch;
+  margin: clamp(2rem, 4vw, 4rem) 0 0;
+  font-size: clamp(1.3rem, 2.1vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  hyphens: none;
+}
+.portal {
+  margin: 0;
+}
+.portalVisual {
+  position: relative;
+  inline-size: 100%;
+  block-size: min(56.25vw, 90svh);
+  min-block-size: 400px;
+  overflow: clip;
+}
+.portalVisual img {
+  object-fit: cover;
+  object-position: 50% 56%;
+}
+.portal figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 7.5% 0;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+}
+.continuation {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(3rem, 7vw, 7rem) 1.5rem;
+  padding: clamp(4rem, 8vw, 8rem) 7.5% 0;
+}
+.continuation figure {
+  margin: 0;
+  grid-column: 2 / 8;
+}
+.continuation figure:nth-child(even) {
+  grid-column: 9 / 13;
+  padding-block-start: 6rem;
+}
+.continuation figure:nth-child(3) {
+  grid-column: 1 / 6;
+}
+.continuation figure:nth-child(4) {
+  grid-column: 7 / 13;
+}
+.continuation img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+.continuation figcaption {
+  padding-block-start: 0.8rem;
+  font-size: 0.6rem;
+}
+.visit {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3rem clamp(0.75rem, 1.5vw, 1.5rem);
+  margin: clamp(4rem, 8vw, 8rem) 7.5% 0;
+  padding-block: 2rem;
+  border-block: 1px solid
+    color-mix(in srgb, var(--viero-black) 30%, transparent);
+}
+.visitTitle {
+  grid-column: 1 / 4;
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+.visitCopy {
+  grid-column: 4 / 8;
+  margin: 0;
+  max-inline-size: 35ch;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.actions {
+  grid-column: 9 / 13;
+}
+.actions p {
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  max-inline-size: 32ch;
+  overflow-wrap: anywhere;
+}
+.visit a {
+  color: inherit;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4em;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+.actions a {
+  display: table;
+  margin-block-start: 0.75rem;
+}
+.visit a:hover {
+  text-decoration-thickness: 2px;
+}
+.visit a:focus-visible {
+  outline: 2px solid var(--viero-black);
+  outline-offset: 6px;
+}
+.address,
+.hours,
+.contact {
+  min-inline-size: 0;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid
+    color-mix(in srgb, var(--viero-black) 20%, transparent);
+}
+.address {
+  grid-column: 1 / 5;
+}
+.hours {
+  grid-column: 5 / 9;
+}
+.contact {
+  grid-column: 9 / 13;
+}
+.visit h4 {
+  margin: 0 0 1rem;
+  font-size: 0.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.address address {
+  font-style: normal;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.address span,
+.hours dd span,
+.contact a {
+  display: block;
+}
+.hours dl {
+  margin: 0;
+  font-size: 0.8rem;
+}
+.hours dl > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1rem;
+  margin-block-end: 0.6rem;
+  overflow-wrap: anywhere;
+}
+.hours dt {
+  font-weight: 400;
+}
+.hours dd {
+  margin: 0;
+}
+/* The mask opens a 64%-wide doorway into the full architectural frame.
+   Reserved image geometry stays fixed; only clip and transform animate. */
+@supports (animation-timeline: view()) and (animation-range: entry 0% cover 45%) {
+  @media (min-width: 1100px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+    .portalVisual {
+      animation: portal-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+    .portalVisual img {
+      animation: portal-depth linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+@keyframes portal-open {
+  from {
+    clip-path: inset(8% 18% 8% 18%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+@keyframes portal-depth {
+  from {
+    transform: scale(1.035);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@media (min-width: 1800px) {
+  .invitation {
+    padding-inline: 135px;
+  }
+}
+@media (max-width: 1099px) {
+  .invitation h2 {
+    grid-column: 2 / 13;
+    font-size: 14vw;
+  }
+  .headline {
+    grid-column: 6 / 13;
+    max-inline-size: 25ch;
+    font-size: clamp(1.3rem, 2.8vw, 2rem);
+  }
+  .portalVisual {
+    block-size: 56.25vw;
+    min-block-size: 0;
+  }
+  .visitTitle {
+    grid-column: 1 / 5;
+  }
+  .visitCopy {
+    grid-column: 5 / 13;
+    max-inline-size: 42ch;
+  }
+  .actions {
+    grid-column: 5 / 13;
+  }
+  .address {
+    grid-column: 1 / 7;
+  }
+  .hours {
+    grid-column: 7 / 13;
+  }
+  .contact {
+    grid-column: 1 / 7;
+  }
+}
+@media (max-width: 639px) {
+  .chapter {
+    padding-block: 3.5rem 3rem;
+  }
+  .invitation {
+    padding-inline: 5%;
+    padding-block-end: 2.5rem;
+  }
+  .marker {
+    grid-column: 1 / -1;
+    font-size: 0.5rem;
+    padding: 0;
+  }
+  .invitation h2 {
+    grid-column: 1 / -1;
+    font-size: 17vw;
+    margin-block-start: 2rem;
+  }
+  .headline {
+    grid-column: 4 / 13;
+    margin-block-start: 2rem;
+    font-size: clamp(1.15rem, 5.2vw, 1.5rem);
+  }
+  .portalVisual {
+    margin-inline: 5%;
+    inline-size: 90%;
+    block-size: auto;
+    aspect-ratio: 4 / 5;
+  }
+  .portalVisual img {
+    object-position: 61% 50%;
+  }
+  .portal figcaption {
+    padding-inline: 5%;
+    font-size: 0.45rem;
+  }
+  .continuation {
+    padding-inline: 5%;
+    row-gap: 2.5rem;
+  }
+  .continuation figure:nth-child(n) {
+    grid-column: 1 / 12;
+    padding: 0;
+  }
+  .continuation figure:nth-child(even) {
+    grid-column: 3 / 13;
+  }
+  .visit {
+    margin: 3.5rem 5% 0;
+    row-gap: 1.75rem;
+    padding-block: 1.5rem;
+  }
+  .visitTitle {
+    grid-column: 1 / -1;
+    font-size: 1.6rem;
+  }
+  .visitCopy {
+    grid-column: 2 / 13;
+    font-size: 0.8rem;
+  }
+  .actions {
+    grid-column: 4 / 13;
+  }
+  .actions p {
+    font-size: 0.8rem;
+  }
+  .visit a {
+    font-size: 0.75rem;
+  }
+  .address,
+  .hours,
+  .contact {
+    grid-column: 2 / 13;
+    padding-block-start: 1.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portalVisual {
+    clip-path: none;
+    animation: none;
+  }
+  .portalVisual img {
+    transform: none;
+    animation: none;
+  }
+}
