@@ -167,7 +167,6 @@ export function EnquiryForm({
       <p className={styles.requiredNote}>
         {copy?.requiredNote ?? "Mit * markierte Felder sind Pflichtfelder."}
       </p>
-      {shopwareLayout && <div>Datenschutz*</div>}
       <label className={styles.privacy} htmlFor="enquiry-privacy">
         <input
           id="enquiry-privacy"
@@ -229,7 +228,11 @@ export function EnquiryForm({
             Ein gemeinsamer Anfang.
           </span>
         )}
-        <button type="submit" disabled={pending}>
+        <button
+          className={shopwareLayout ? "button" : undefined}
+          type="submit"
+          disabled={pending}
+        >
           {pending
             ? "Wird gesendet …"
             : (copy?.submitLabel ?? "Anfrage senden")}

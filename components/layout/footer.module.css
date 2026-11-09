@@ -44,6 +44,8 @@
   line-height: 1.7;
   overflow-wrap: anywhere;
   margin-top: 0.3rem;
+}
+.contact a[href^="tel:"] {
   text-decoration: underline;
   text-underline-offset: 0.3em;
 }

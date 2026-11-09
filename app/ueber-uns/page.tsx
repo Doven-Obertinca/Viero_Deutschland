@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { CmsRichText } from "@/components/content/cms-rich-text";
 import { getAbout } from "@/lib/content/about";
@@ -11,7 +11,7 @@ import { SectionStack } from "./section-stack";
 import styles from "./about.module.css";
 
 const source = "https://viero-deutschland.de/UEber-uns/";
-const heroImage = "/brand/about/lavender-interior-wide.webp";
+const heroImage = "/brand/about/rustic-textured-wall.webp";
 const gallery = [
   {
     src: "/brand/about/kyle-house.jpg",
@@ -32,16 +32,6 @@ const gallery = [
     height: 1080,
   },
 ];
-const { props: portraitHero } = getImageProps({
-  src: "/brand/about/lavender-interior.webp",
-  alt: "Lavendelfarbene Putzbögen und eine Treppe im Tageslicht",
-  width: 800,
-  height: 1200,
-  unoptimized: true,
-  loading: "eager",
-  fetchPriority: "high",
-});
-
 export async function generateMetadata() {
   const about = await getAbout();
   const base = metadata(about?.title ?? "Über uns", aboutPath);
@@ -65,12 +55,15 @@ export default async function AboutPage() {
   return (
     <article className={styles.page}>
       <header className={styles.hero} data-fullscreen-hero>
-        <picture className={styles.heroArt}>
-          <source media="(min-width: 701px)" srcSet={heroImage} />
-          {/* Art-directed picture with pre-encoded WebP sources. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img {...portraitHero} />
-        </picture>
+        <div className={styles.heroArt}>
+          <Image
+            src={heroImage}
+            alt="Warme, strukturierte Putzwand im Streiflicht"
+            fill
+            unoptimized
+            preload
+          />
+        </div>
         <div className={styles.heroType}>
           <p className={styles.kicker}>Viero / Deutschland</p>
           <h1 aria-label={title}>

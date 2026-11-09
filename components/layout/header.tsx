@@ -79,6 +79,7 @@ export async function Header() {
         <BrandLogo />
       </Link>
       <div className="header-actions">
+        <span id="header-product-search" style={{ display: "contents" }} />
         <AccountNavigation signedIn={!!customer} />
         <HamburgerNavigation items={items} />
       </div>

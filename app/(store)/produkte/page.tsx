@@ -7,7 +7,13 @@ import { ProductCatalog } from "@/components/product/product-catalog";
 import { buildCatalog } from "@/lib/catalog/filters";
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata("Produkte", "/produkte");
-export default async function Products() {
+export default async function Products({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string | string[] }>;
+}) {
+  const { q } = await searchParams;
+  const query = (Array.isArray(q) ? q[0] : q)?.trim() ?? "";
   let data;
   try {
     data = await Promise.all([getCatalogProducts(), getContext()]);
@@ -23,6 +29,8 @@ export default async function Products() {
   const items = buildCatalog(products);
   return (
     <ProductCatalog
+      key={query}
+      initialQuery={query}
       items={items}
       currency={context.currency.isoCode}
       taxState={context.taxState}

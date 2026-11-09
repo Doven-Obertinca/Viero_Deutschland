@@ -15,7 +15,7 @@
   display: grid;
   align-items: center;
   padding: calc(var(--header-height) + 2rem) var(--edge) 5.5rem;
-  background: #634655;
+  background: #49301f;
   color: #fffaf5;
   overflow: clip;
 }
@@ -27,11 +27,27 @@
   overflow: hidden;
 }
 
+.heroArt::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: -15%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 76% 45%,
+    rgb(255 217 150 / 66%),
+    rgb(226 100 24 / 34%) 28%,
+    transparent 63%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.24;
+}
+
 .heroArt::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgb(35 20 29 / 45%), transparent 65%);
+  background: linear-gradient(90deg, rgb(30 15 7 / 67%), transparent 76%);
 }
 
 .heroArt img,
@@ -349,6 +365,14 @@
     animation: hero-reveal 900ms var(--ease) both;
   }
 
+  .heroArt::before {
+    animation: film-burn 12s ease-in-out infinite alternate;
+  }
+
+  .heroArt img {
+    animation: hero-zoom 24s ease-in-out infinite alternate;
+  }
+
   .hero h1 > span > span {
     animation: line-in 0.95s 100ms var(--ease) both;
   }
@@ -399,9 +423,13 @@
 
   @supports (animation-timeline: view()) {
     .heroArt img {
-      animation: hero-parallax linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0px 100svh;
+      animation:
+        hero-zoom 24s ease-in-out infinite alternate,
+        hero-parallax linear both;
+      animation-timeline: auto, scroll(root block);
+      animation-range:
+        normal,
+        0px 100svh;
     }
 
     .heroType {
@@ -500,11 +528,32 @@
 }
 
 @keyframes hero-parallax {
+  to {
+    translate: 0 2.5%;
+  }
+}
+
+@keyframes hero-zoom {
   from {
-    transform: scale(1);
+    scale: 1.06;
   }
   to {
-    transform: translateY(7%) scale(1.16);
+    scale: 1.2;
+  }
+}
+
+@keyframes film-burn {
+  0%,
+  30% {
+    opacity: 0.18;
+    transform: translateX(10%);
+  }
+  75% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateX(-8%);
   }
 }
 
@@ -562,11 +611,11 @@
   .heroArt::after {
     background: linear-gradient(
       180deg,
-      rgb(35 20 29 / 65%),
-      rgb(35 20 29 / 30%) 22%,
+      rgb(30 15 7 / 65%),
+      rgb(30 15 7 / 30%) 22%,
       transparent 46%,
       transparent 73%,
-      rgb(35 20 29 / 65%)
+      rgb(30 15 7 / 65%)
     );
   }
 

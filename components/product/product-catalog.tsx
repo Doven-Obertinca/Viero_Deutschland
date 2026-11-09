@@ -30,10 +30,12 @@ export function ProductCatalog({
   items,
   currency,
   taxState,
+  initialQuery = "",
 }: {
   items: CatalogItem[];
   currency: string;
   taxState?: string;
+  initialQuery?: string;
 }) {
   const resultsRef = useRef<HTMLElement>(null);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
@@ -47,7 +49,7 @@ export function ProductCatalog({
     return () => media.removeEventListener("change", update);
   }, []);
   const [selection, setSelection] = useState<Selection>({});
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [price, setPrice] = useState("");
   const [available, setAvailable] = useState(false);
   const [sort, setSort] = useState("featured");

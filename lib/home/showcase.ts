@@ -3,10 +3,10 @@ import { getProduct } from "../shopware/products";
 
 // Curated from the live catalogue and visually audited; content stays in Shopware.
 export const showcaseProductIds = [
-  "0191651721d876039a85becdc44509cf", // Oltre
+  "019091c88eea72e5b497a64162ab435f", // Erametal
   "019091a18051717ca7e33783dbabb651", // Allure
   "0190a15886267e59a54d7152d79fff7f", // Marmorin Hydro
-  "019091c88eea72e5b497a64162ab435f", // Erametal
+  "0191651721d876039a85becdc44509cf", // Oltre
   "01910ec63cb37734ba2f0a13c7c269d9", // Travertine
   "0190a0f5fefe73409802a3f0db8217c4", // Rusten Finish
   "0190a5bc4d9d7b468a98f39ab6a047f7", // Marmorin Sand
