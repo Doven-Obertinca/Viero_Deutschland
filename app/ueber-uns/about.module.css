@@ -15,7 +15,7 @@
   display: grid;
   align-items: center;
   padding: calc(var(--header-height) + 2rem) var(--edge) 5.5rem;
-  background: #49301f;
+  background: #24211e;
   color: #fffaf5;
   overflow: clip;
 }
@@ -35,8 +35,8 @@
   pointer-events: none;
   background: radial-gradient(
     ellipse at 76% 45%,
-    rgb(255 217 150 / 66%),
-    rgb(226 100 24 / 34%) 28%,
+    rgb(255 230 193 / 48%),
+    rgb(191 157 115 / 22%) 28%,
     transparent 63%
   );
   mix-blend-mode: screen;
@@ -47,7 +47,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgb(30 15 7 / 67%), transparent 76%);
+  background:
+    linear-gradient(90deg, rgb(14 12 10 / 76%), transparent 82%),
+    linear-gradient(0deg, rgb(14 12 10 / 58%), transparent 30%);
 }
 
 .heroArt img,
@@ -134,7 +136,6 @@
 .folio {
   right: var(--edge);
   color: #fff;
-  background: var(--mauve);
   padding: 0.55rem 0.7rem;
 }
 
@@ -181,8 +182,7 @@
 }
 
 .profileArt,
-.studyImages,
-.gallery figure {
+.studyImages {
   position: relative;
   overflow: hidden;
   background: #b2a299;
@@ -193,22 +193,117 @@
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 1fr;
-  align-items: center;
-  gap: clamp(0.6rem, 2.5vw, 2.8rem);
-  padding: clamp(3.75rem, 9vw, 9rem) var(--edge);
-  background: #d8c9c3;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(3rem, 7vw, 8rem) var(--edge);
+  background: #171717;
+  color: #f3eee7;
+  scroll-margin-block-start: var(--header-height);
 }
-
-.gallery figure {
+.galleryHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-block-end: clamp(1.5rem, 4vw, 4rem);
+}
+.galleryHeader h2 {
+  margin: 0;
+  font: 400 clamp(2.5rem, 6vw, 7rem) / 0.95 var(--serif);
+  letter-spacing: -0.06em;
+}
+.gallerySwitch {
+  display: flex;
+  gap: 0.35rem;
+}
+.gallerySwitch button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #696561;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.gallerySwitch button:hover {
+  border-color: currentColor;
+}
+.gallerySwitch button[aria-pressed="true"] {
+  background: #f3eee7;
+  color: #1e1e1d;
+  border-color: #f3eee7;
+}
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.6rem, 1.8vw, 2rem);
+}
+.galleryGrid figure {
   margin: 0;
 }
-
-.gallery img {
-  display: block;
-  width: 100%;
-  height: auto;
+.galleryGrid figure:only-child {
+  grid-column: 2;
+}
+.galleryArt {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: clip;
+  background: #2b2a28;
+}
+.galleryArt img {
+  object-fit: cover;
+}
+.galleryGrid figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  padding-block: 0.8rem;
+  font-size: 0.8rem;
+}
+.galleryGrid figcaption span,
+.galleryCount {
+  color: #bcb6af;
+  font-variant-numeric: tabular-nums;
+}
+.galleryCount {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .galleryGrid figure {
+    animation: gallery-develop 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .galleryGrid figure:nth-child(2) {
+    animation-delay: 85ms;
+  }
+  .galleryGrid figure:nth-child(3) {
+    animation-delay: 170ms;
+  }
+}
+@keyframes gallery-develop {
+  from {
+    opacity: 0;
+    clip-path: inset(12% 0 0);
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .galleryGrid figure:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: 70%;
+    justify-self: center;
+  }
 }
 
 .study {
@@ -440,7 +535,6 @@
     }
 
     .profile,
-    .gallery,
     .history,
     .closing {
       view-timeline-name: --about-section;
@@ -466,7 +560,6 @@
     }
 
     .profileCopy,
-    .gallery figure,
     .history h2,
     .timeline {
       animation: section-parallax linear both;
@@ -476,18 +569,6 @@
 
     .profileCopy {
       --travel: clamp(2rem, 5vw, 5rem);
-    }
-
-    .gallery figure {
-      --travel: clamp(1.75rem, 5vw, 5rem);
-    }
-
-    .gallery figure:nth-child(2) {
-      --travel: clamp(-4rem, -4vw, -1.25rem);
-    }
-
-    .gallery figure:nth-child(3) {
-      --travel: clamp(1.25rem, 3vw, 3rem);
     }
 
     .history h2 {
@@ -508,14 +589,9 @@
       }
 
       .profileCopy,
-      .gallery figure:nth-child(n),
       .history h2,
       .timeline {
         --travel: 1rem;
-      }
-
-      .gallery figure:nth-child(2) {
-        --travel: 0.5rem;
       }
 
       .profileArt,
@@ -611,11 +687,11 @@
   .heroArt::after {
     background: linear-gradient(
       180deg,
-      rgb(30 15 7 / 65%),
-      rgb(30 15 7 / 30%) 22%,
+      rgb(14 12 10 / 72%),
+      rgb(14 12 10 / 38%) 22%,
       transparent 46%,
       transparent 73%,
-      rgb(30 15 7 / 65%)
+      rgb(14 12 10 / 72%)
     );
   }
 
@@ -648,19 +724,6 @@
 
   .profileArt {
     aspect-ratio: 5 / 4;
-  }
-
-  .gallery {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .gallery figure:first-child {
-    width: 78%;
-  }
-
-  .gallery figure:nth-child(2) {
-    width: 88%;
-    justify-self: end;
   }
 
   .studyImages {

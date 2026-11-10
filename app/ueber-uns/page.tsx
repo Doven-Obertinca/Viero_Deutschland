@@ -6,32 +6,13 @@ import { getAbout } from "@/lib/content/about";
 import { aboutPath } from "@/lib/content/about-route";
 import { getFooterContent } from "@/lib/content/footer";
 import { metadata } from "@/lib/seo";
+import { InteriorGallery } from "./interior-gallery";
 import { MaterialStudy } from "./material-study";
 import { SectionStack } from "./section-stack";
 import styles from "./about.module.css";
 
 const source = "https://viero-deutschland.de/UEber-uns/";
-const heroImage = "/brand/about/rustic-textured-wall.webp";
-const gallery = [
-  {
-    src: "/brand/about/kyle-house.jpg",
-    alt: "Freistehende dunkle Badewanne neben einem Fenster",
-    width: 1600,
-    height: 2400,
-  },
-  {
-    src: "/brand/about/dubai-apartment.jpg",
-    alt: "Wohnraum mit horizontal strukturierter Wand und Ledersofa",
-    width: 2000,
-    height: 1022,
-  },
-  {
-    src: "/brand/about/cafe-interior.jpg",
-    alt: "Café mit strukturierten Wänden und einer beleuchteten Theke",
-    width: 1920,
-    height: 1080,
-  },
-];
+const heroImage = "/brand/about/iron-3.webp";
 export async function generateMetadata() {
   const about = await getAbout();
   const base = metadata(about?.title ?? "Über uns", aboutPath);
@@ -58,9 +39,10 @@ export default async function AboutPage() {
         <div className={styles.heroArt}>
           <Image
             src={heroImage}
-            alt="Warme, strukturierte Putzwand im Streiflicht"
+            alt="Dunkles Eisenrelief mit feinen metallischen Akzenten im Streiflicht"
             fill
-            unoptimized
+            sizes="100vw"
+            quality={90}
             preload
           />
         </div>
@@ -125,14 +107,18 @@ export default async function AboutPage() {
                     <div className={styles.profileArt}>
                       <Image
                         src={
-                          index % 2 === 0
-                            ? "/brand/material-culture/gesture.webp"
-                            : "/brand/spaces/domazlicka.webp"
+                          index === 0
+                            ? "/brand/about/ghibli-damascato.webp"
+                            : index % 2 === 0
+                              ? "/brand/material-culture/gesture.webp"
+                              : "/brand/spaces/domazlicka.webp"
                         }
                         alt={
-                          index % 2 === 0
-                            ? "Detail aus der handwerklichen Oberflächengestaltung"
-                            : "Innenraum mit grauer Spachtelwand und schwarzen Akzenten"
+                          index === 0
+                            ? "Beige Ghibli-Damascato-Oberfläche mit Rundbogen und Stillleben"
+                            : index % 2 === 0
+                              ? "Detail aus der handwerklichen Oberflächengestaltung"
+                              : "Innenraum mit grauer Spachtelwand und schwarzen Akzenten"
                         }
                         fill
                         quality={90}
@@ -141,21 +127,7 @@ export default async function AboutPage() {
                     </div>
                   </section>
                 ))}
-                <section
-                  className={styles.gallery}
-                  aria-label="Innenräume"
-                  data-scroll-scene
-                >
-                  {gallery.map((photo) => (
-                    <figure key={photo.src}>
-                      <Image
-                        {...photo}
-                        quality={90}
-                        sizes="(max-width: 700px) 88vw, 34vw"
-                      />
-                    </figure>
-                  ))}
-                </section>
+                <InteriorGallery />
                 <section
                   className={styles.materialScene}
                   aria-label="Material und Raum"
@@ -178,7 +150,7 @@ export default async function AboutPage() {
           data-scroll-scene
         >
           <Image
-            src="/brand/about/travertine-kitchen-restored.webp"
+            src="/brand/about/spatolato-rustico.webp"
             alt=""
             fill
             quality={90}

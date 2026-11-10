@@ -575,7 +575,7 @@ body:has(.signature-hero) .header {
   padding-inline: 7.5%;
 }
 .header[data-scrolled] {
-  background: rgb(40 28 36 / 76%);
+  background: rgb(62 50 58 / 76%);
   border-bottom-color: rgb(255 250 245 / 25%);
 }
 :is(.header[data-scrolled], body:has([data-fullscreen-hero]) .header)

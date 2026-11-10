@@ -1,3 +1,5 @@
+import { getVisualizerMaterials } from "@/lib/visualizer/catalog";
+import { isShopwareId } from "@/lib/shopware/urls";
 import Image from "next/image";
 import { CmsRichText } from "@/components/content/cms-rich-text";
 import { EnquiryForm } from "@/components/showroom/enquiry-form";
@@ -11,11 +13,32 @@ import styles from "@/components/showroom/shopware-form.module.css";
 
 export const metadata = pageMetadata("Kontakt", contactPath);
 
-export default async function ContactPage() {
-  const [form, footer] = await Promise.all([
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ material?: string | string[] }>;
+}) {
+  const { material } = await searchParams;
+  const ids = (Array.isArray(material) ? material : [material ?? ""])
+    .filter(isShopwareId)
+    .slice(0, 12);
+  const [form, footer, materials] = await Promise.all([
     getContactForm(),
     getFooterContent(),
+    ids.length ? getVisualizerMaterials().catch(() => []) : [],
   ]);
+  const selected = materials.filter(
+    (item) => item.texture && ids.includes(item.id),
+  );
+  const initialMessage = selected.length
+    ? [
+        "Ich interessiere mich für folgende Oberflächen aus dem Raumvisualisierer:",
+        ...selected.map(
+          (item) =>
+            `• ${item.name}${item.color ? ` · ${item.color}` : ""} (${item.id})`,
+        ),
+      ].join("\n")
+    : undefined;
   const privacy = footer.privacy
     ? await getFooterDocument(footer.privacy.id)
     : null;
@@ -51,6 +74,7 @@ export default async function ContactPage() {
             <EnquiryForm
               definition={form}
               submitAction={submitContact}
+              initialMessage={initialMessage}
               privacyHref={
                 footer.privacy?.href ??
                 "https://viero-deutschland.de/Datenschutz/"

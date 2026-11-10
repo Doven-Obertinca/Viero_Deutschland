@@ -1,0 +1,98 @@
+.section {
+  background: linear-gradient(
+    transparent,
+    var(--limestone) 6rem,
+    var(--limestone) calc(100% - 6rem),
+    transparent
+  );
+  padding: clamp(5rem, 9vw, 9rem) 7.5%;
+}
+.inner {
+  max-inline-size: 1480px;
+  margin-inline: auto;
+}
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-block-end: clamp(1.75rem, 4vw, 4rem);
+}
+.header h2 {
+  margin: 0.45em 0 0;
+  font:
+    400 clamp(2.2rem, 4.5vw, 5rem) / 1 "Iowan Old Style",
+    Georgia,
+    serif;
+  letter-spacing: -0.045em;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-block-start: clamp(1.75rem, 4vw, 3.5rem);
+}
+.actions a {
+  border-radius: 999px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+.card {
+  display: block;
+}
+.visual {
+  position: relative;
+  overflow: clip;
+  aspect-ratio: 3 / 4;
+  background: var(--limestone);
+}
+.visual img {
+  object-fit: cover;
+}
+.allureCrop {
+  object-position: left top;
+  transform-origin: top left;
+  scale: 1.85;
+}
+.badge {
+  position: absolute;
+  inset: 0.75rem auto auto 0.75rem;
+  padding: 0.4rem 0.65rem;
+  background: var(--limestone);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.card h3 {
+  margin: 0.85rem 0 0.35rem;
+  font:
+    400 clamp(1.25rem, 2vw, 2rem) / 1.1 "Iowan Old Style",
+    Georgia,
+    serif;
+}
+.card p {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+}
+.card .price {
+  margin-block-start: 0.75rem;
+  font-size: 0.95rem;
+}
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 1.75rem;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .visual img {
+    transition: transform 500ms ease;
+  }
+  .card:hover img,
+  .card:focus-visible img {
+    transform: scale(1.05);
+  }
+}

@@ -1,0 +1,271 @@
+.campaign {
+  --ink: #292925;
+  --paper: #f2eee4;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: var(--ink);
+  color: var(--paper);
+  position: relative;
+  isolation: isolate;
+}
+.scene {
+  position: relative;
+  grid-area: 1 / 1;
+  min-height: clamp(34rem, 83svh, 60rem);
+  overflow: hidden;
+  background: #56504a;
+}
+.scene img,
+.finish {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+}
+.finish {
+  clip-path: inset(0 0 0 var(--split));
+}
+.guide {
+  position: absolute;
+  inset-block: 0;
+  left: var(--split);
+  width: 1px;
+  background: #fffdf1;
+  pointer-events: none;
+}
+.guide span {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 34%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid #423f38;
+  width: 3rem;
+  height: 2.3rem;
+  font-size: 1.35rem;
+}
+.range {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  appearance: none;
+  opacity: 0;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1px;
+}
+.range::-moz-range-thumb {
+  width: 1px;
+  border: 0;
+}
+.scene:has(.range:focus-visible) {
+  outline: 3px solid var(--paper);
+  outline-offset: -5px;
+}
+.labels {
+  position: absolute;
+  inset: 1.35rem var(--space) auto;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.labels span,
+.hint {
+  padding: 0.28rem 0.65rem;
+  background: #292925;
+  color: var(--paper);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.hint {
+  position: absolute;
+  top: 4rem;
+  right: var(--space);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.scene:is(:hover, :focus-within) .hint {
+  opacity: 1;
+}
+.editorial {
+  grid-area: 1 / 1;
+  align-self: end;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  padding: 5rem var(--space) clamp(2rem, 5vw, 5rem);
+  background: linear-gradient(0deg, #1b1916e8, #1b19167a 70%, transparent);
+}
+.kicker,
+.caption {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+.editorial h2 {
+  font-size: clamp(3.9rem, 8.1vw, 9rem);
+  font-weight: 400;
+  line-height: 0.83;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+  margin: 0.23em 0;
+}
+.editorial > p:not(.kicker) {
+  max-width: 40ch;
+  margin: 1.2rem 0;
+}
+.actions,
+.caption,
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+.actions a {
+  pointer-events: auto;
+  color: inherit;
+}
+.primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid var(--paper);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.primary:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+.secondary {
+  padding: 0.6rem;
+  text-underline-offset: 0.3em;
+}
+.caption {
+  min-height: 3rem;
+  padding: 0.55rem var(--space);
+  justify-content: space-between;
+}
+.switcher button {
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: inherit;
+  padding: 0.35rem 0.8rem;
+  cursor: pointer;
+}
+.switcher button[aria-pressed="true"] {
+  background: var(--paper);
+  color: var(--ink);
+}
+.campaign :is(a, button):focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+}
+@media (max-width: 680px) {
+  .scene {
+    min-height: 0;
+    aspect-ratio: 1.07;
+  }
+  .editorial {
+    grid-area: auto;
+    padding: 1.4rem var(--space) 1.3rem;
+    background: none;
+  }
+  .editorial h2 {
+    font-size: clamp(2.65rem, 11vw, 4.5rem);
+  }
+  .guide span {
+    top: 50%;
+  }
+  .labels {
+    inset-block-start: 0.8rem;
+  }
+  .caption {
+    border-top: 1px solid #ffffff40;
+    gap: 0.25rem 1rem;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scene:not(:active):not(:focus-within) :is(.guide, .finish) {
+    transition:
+      left 0.45s ease,
+      clip-path 0.45s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .campaign * {
+    transition: none !important;
+  }
+}
+
+.switcher button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.switcher img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+.scene:has(.range[value="0"]) .guide span {
+  transform: translate(0, -50%);
+}
+.scene:has(.range[value="100"]) .guide span {
+  transform: translate(-100%, -50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .campaign[data-entered] .scene {
+    animation: campaign-photo-in 520ms ease-out both;
+  }
+
+  .campaign[data-entered]:not(:focus-within) .editorial > * {
+    animation: campaign-copy-in 460ms cubic-bezier(0.2, 0.65, 0.3, 1) 90ms both;
+  }
+
+  .campaign[data-entered]:not(:focus-within) .editorial .actions {
+    animation-delay: 160ms;
+  }
+}
+
+@keyframes campaign-photo-in {
+  from {
+    opacity: 0.72;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes campaign-copy-in {
+  from {
+    opacity: 0.65;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

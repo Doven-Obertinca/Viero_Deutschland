@@ -1,0 +1,450 @@
+.studio {
+  --ink: #232724;
+  --paper: #f6f3ea;
+  --edge: clamp(1.25rem, 6vw, 8rem);
+  background: var(--paper);
+}
+.hero {
+  isolation: isolate;
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 100svh;
+  background: #34342c;
+  color: #fffdf4;
+  padding: max(8rem, 16vh) var(--edge) clamp(6rem, 14vh, 11rem);
+}
+.heroImage {
+  object-fit: cover;
+  object-position: 56% center;
+  z-index: -2;
+  animation: photo-in 1s both;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, #171a16d9 0%, #171a167a 52%, #171a1610 100%),
+    linear-gradient(0deg, #121512bc, transparent 50%);
+}
+.intro {
+  animation: entry 0.75s 0.12s both;
+}
+.eyebrow,
+.heroIndex,
+.hero a,
+.heroAction,
+.roomCaption small,
+.roomOpen,
+.uploadTarget strong {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.eyebrow {
+  margin: 0;
+}
+.eyebrow i {
+  display: inline-block;
+  width: 0.48rem;
+  height: 0.48rem;
+  background: #d9c8a2;
+  margin-right: 0.65rem;
+}
+.hero h1 {
+  font-size: clamp(3.2rem, 11vw, 13.5rem);
+  font-weight: 400;
+  letter-spacing: -0.075em;
+  line-height: 0.82;
+  margin: 0.27em 0;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #e9decb;
+}
+.heroCopy {
+  max-width: 37ch;
+  font-size: clamp(0.96rem, 1.4vw, 1.24rem);
+}
+.start,
+.heroIndex,
+.saved {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+}
+.start {
+  margin-top: 1.6rem;
+}
+.hero a {
+  color: inherit;
+  text-decoration: none;
+}
+.hero a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+.heroAction {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  gap: 0.8rem;
+  align-items: center;
+  text-align: left;
+}
+.heroAction {
+  min-height: 3.6rem;
+  padding-inline: 1.3rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  transition:
+    background 0.35s,
+    color 0.35s;
+}
+.heroAction:is(:hover, :focus-visible) {
+  background: var(--paper);
+  color: var(--ink);
+}
+.heroIndex {
+  position: absolute;
+  bottom: 1.6rem;
+  inset-inline: var(--edge);
+  justify-content: space-between;
+  border-top: 1px solid #fffcf36b;
+  padding-top: 0.85rem;
+}
+.gallery,
+.study,
+.drop,
+.discovery {
+  padding: clamp(3.5rem, 9vw, 10rem) var(--edge);
+}
+.gallery,
+.study {
+  max-width: 115rem;
+  margin-inline: auto;
+}
+.gallery h2,
+.study h2,
+.drop h2 {
+  margin: 0.28em 0;
+  font-size: clamp(2.9rem, 6.6vw, 8rem);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+}
+.study {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 6rem);
+}
+.studyCopy > p:not(.eyebrow) {
+  max-width: 34ch;
+}
+.studyCopy small {
+  color: #4c534b;
+}
+.studyImage {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 1800 / 1317;
+  background: #b7ada0;
+  overflow: hidden;
+}
+.studyImage img,
+.studyImage canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: fill;
+}
+.studyImage canvas:not([hidden]) {
+  animation: photo-in 0.55s both;
+}
+.studyImage button,
+.studyImage span {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid #fbf6e77a;
+  padding: 0.65rem 0.85rem;
+  font: inherit;
+}
+.studyImage button {
+  cursor: pointer;
+  min-height: 44px;
+}
+.studyImage span {
+  font-size: 0.72rem;
+  pointer-events: none;
+}
+.studyImage span:last-child {
+  left: auto;
+  right: 0.8rem;
+}
+.studyLine {
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+  background: white;
+}
+.studyRange {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+.studyRange input {
+  accent-color: var(--ink);
+  min-height: 32px;
+}
+.studyStatus {
+  margin: 0;
+}
+.gallery {
+  border-top: 1px solid #cdc7bb;
+}
+.editorialHead {
+  margin-bottom: clamp(2rem, 5vw, 5rem);
+}
+.roomCards {
+  display: grid;
+  align-items: start;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: clamp(1rem, 6vw, 7rem);
+}
+.roomCards button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+}
+.roomCards button:nth-child(2) {
+  margin-top: clamp(2rem, 10vw, 12rem);
+}
+.thumbnail {
+  display: block;
+  position: relative;
+  aspect-ratio: 1.48;
+  overflow: hidden;
+  background: #b7ada0;
+}
+.roomCards button:nth-child(2) .thumbnail {
+  aspect-ratio: 0.92;
+}
+.thumbnail img {
+  object-fit: cover;
+  transition: transform 0.75s cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+.roomCards button:is(:hover, :focus-visible) img {
+  transform: scale(1.045);
+}
+.roomOpen {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.6rem 0.8rem;
+  transition: transform 0.3s;
+}
+.roomCards button:is(:hover, :focus-visible) .roomOpen {
+  transform: translateY(-0.3rem);
+}
+.roomCaption {
+  display: grid;
+  padding-top: 0.8rem;
+}
+.roomCaption strong {
+  font-size: clamp(2rem, 5vw, 5rem);
+  letter-spacing: -0.065em;
+  font-weight: 400;
+  line-height: 1.1;
+  transition: transform 0.3s;
+}
+.roomCards button:is(:hover, :focus-visible) strong {
+  transform: translateX(0.2em);
+}
+.drop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(1rem, 5vw, 6rem);
+  align-items: center;
+  background: #d8d7cb;
+  transition: background 0.3s;
+}
+.dragging {
+  background: #bdcfc4;
+}
+.uploadTarget {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 1rem;
+  min-height: clamp(13rem, 32vw, 27rem);
+  width: 100%;
+  border: 1px solid #4a574e;
+  color: var(--ink);
+  background: linear-gradient(
+    90deg,
+    transparent calc(50% - 0.5px),
+    #4a574e50 50%,
+    transparent calc(50% + 0.5px)
+  );
+  cursor: pointer;
+  transition:
+    transform 0.35s,
+    background-color 0.35s;
+}
+.uploadTarget img {
+  z-index: -1;
+  object-fit: cover;
+  animation: photo-in 0.5s both;
+}
+.uploadTarget:has(img) {
+  color: white;
+  text-shadow: 0 1px 4px #000;
+}
+.uploadTarget strong {
+  background: #d8d7cb;
+  color: var(--ink);
+  padding: 0.4rem 0.7rem;
+  text-shadow: none;
+}
+.uploadTarget:is(:hover, :focus-visible),
+.dragging .uploadTarget {
+  background-color: #b6c2b5;
+}
+.dragging .uploadTarget {
+  transform: scale(1.025);
+}
+.saved button:not(:global(.button)) {
+  border: 0;
+  background: none;
+  text-decoration: underline;
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+.discovery {
+  display: grid;
+  gap: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+.discovery a {
+  color: inherit;
+  font-size: clamp(1.8rem, 5vw, 5rem);
+  letter-spacing: -0.05em;
+}
+.studio :is(a, button, input):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+@keyframes entry {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes photo-in {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  .hero {
+    padding-bottom: 7rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.7rem, 10.7vw, 5.7rem);
+  }
+  .heroIndex {
+    font-size: 0.58rem;
+    gap: 0.4rem;
+  }
+  .heroIndex a {
+    font-size: inherit;
+  }
+  .study,
+  .drop {
+    grid-template-columns: 1fr;
+  }
+  .roomCards {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-inline-end: calc(-1 * var(--edge));
+    padding: 0.4rem var(--edge) 0.7rem 0.4rem;
+  }
+  .roomCards button {
+    flex: 0 0 83%;
+    scroll-snap-align: start;
+  }
+  .roomCards button:nth-child(2) {
+    margin-top: 2rem;
+  }
+  .roomCards button:nth-child(2) .thumbnail {
+    aspect-ratio: 1.25;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio *,
+  .studio *::before,
+  .studio *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.dragSignal {
+  position: fixed;
+  z-index: 50;
+  pointer-events: none;
+  inset: auto var(--edge) 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--paper);
+  box-shadow: 0 0 0 100vmax #21262266;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.studyImage button,
+.roomOpen,
+.saved button,
+.uploadTarget strong {
+  border-radius: 999px;
+}
+
+.thumbnail,
+.uploadTarget {
+  border-radius: 1.25rem;
+}

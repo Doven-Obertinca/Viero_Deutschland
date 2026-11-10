@@ -15,12 +15,14 @@ import { getProducts } from "@/lib/shopware/products";
 import { getCategories } from "@/lib/shopware/categories";
 import { productPath } from "@/lib/shopware/urls";
 import { siteUrl } from "@/lib/seo";
+import { visualizerPath } from "@/lib/visualizer/model";
 export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const paths = [
     "/",
     "/produkte",
     "/toenung",
+    visualizerPath,
     aboutPath,
     academyPath,
     contactPath,

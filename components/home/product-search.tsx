@@ -10,6 +10,7 @@ import styles from "./product-search.module.css";
 const subscribeToHeaderSlot = () => () => {};
 const getHeaderSlot = () => document.getElementById("header-product-search");
 const getServerHeaderSlot = () => null;
+const suggestedTerms = ["Erametal", "Kalkputz", "Badezimmer", "Wand", "Boden"];
 
 export function ProductSearch({
   items,
@@ -47,20 +48,37 @@ export function ProductSearch({
       <dialog
         ref={dialog}
         className={styles.dialog}
-        aria-label="Produktsuche"
+        aria-labelledby="product-search-title"
         onClick={(event) => {
           if (event.target === event.currentTarget) event.currentTarget.close();
         }}
       >
         <div className={styles.panel}>
-          <button
-            className={styles.close}
-            type="button"
-            aria-label="Produktsuche schließen"
-            onClick={() => dialog.current?.close()}
-          >
-            <span aria-hidden="true">×</span>
-          </button>
+          <div className={styles.heading}>
+            <div>
+              <p>VIERO KATALOG</p>
+              <h2 id="product-search-title">
+                Produkte <strong>finden</strong>
+              </h2>
+            </div>
+            <button
+              className={styles.close}
+              type="button"
+              aria-label="Produktsuche schließen"
+              onClick={() => dialog.current?.close()}
+            >
+              <span aria-hidden="true">ESC</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="m6 6 12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
           <form
             className={styles.form}
             action="/produkte#catalog-products"
@@ -73,20 +91,40 @@ export function ProductSearch({
               }
             }}
           >
+            <button type="submit" aria-label="Produkte suchen">
+              <SearchIcon />
+            </button>
             <input
               ref={input}
               aria-label="Produktname oder Eigenschaft"
               name="q"
               type="search"
-              placeholder="Erametal, Kalkputz, Badezimmer …"
+              placeholder="Produkt, Oberfläche oder Farbwelt suchen …"
               autoComplete="off"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
-            <button type="submit" aria-label="Produkte suchen">
-              <SearchIcon />
-            </button>
           </form>
+          {!term && (
+            <div className={styles.suggestions}>
+              <p>Beliebte Suchanfragen</p>
+              <ul>
+                {suggestedTerms.map((suggestion) => (
+                  <li key={suggestion}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setQuery(suggestion);
+                        input.current?.focus();
+                      }}
+                    >
+                      {suggestion}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <Suspense fallback={null}>
             <SearchSuggestions items={items} term={term} />
           </Suspense>

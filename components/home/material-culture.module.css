@@ -1,3 +1,12 @@
+.surface {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--limestone) clamp(5rem, 10vw, 10rem),
+    var(--limestone) calc(100% - clamp(4rem, 7vw, 7rem)),
+    transparent
+  );
+}
 .chapter {
   max-inline-size: 1800px;
   margin-inline: auto;
@@ -17,7 +26,6 @@
 }
 .opening,
 .material,
-.gesture,
 .origin {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -37,13 +45,18 @@
   line-height: 1.07;
   letter-spacing: -0.055em;
 }
-.statement span {
+.line,
+.line > span {
   display: block;
 }
-.statement span:nth-child(1) {
+.line {
+  overflow: clip;
+  overflow-clip-margin: 0.08em;
+}
+.line:nth-child(2) {
   margin-inline-start: 16%;
 }
-.statement span:nth-child(2) {
+.line:nth-child(3) {
   margin-inline-start: 32%;
 }
 .prelude {
@@ -78,7 +91,8 @@
   inline-size: 100%;
   block-size: auto;
 }
-.materialReveal {
+.materialReveal,
+.spaceVisual {
   overflow: clip;
 }
 .materialFigure img {
@@ -100,25 +114,48 @@
   font-size: clamp(0.9rem, 1.25vw, 1.15rem);
 }
 .gesture {
-  align-items: end;
-  padding-block-end: clamp(7rem, 12vw, 12rem);
+  padding-block-end: clamp(5rem, 12vw, 12rem);
 }
-.gestureFigure {
-  grid-column: 1 / 8;
+.gesturePanel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-block-size: clamp(30rem, 62vw, 58rem);
+  overflow: clip;
+  background: #302321;
+  color: #fff;
 }
 .gestureVisual {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   overflow: clip;
 }
+.gestureVisual img {
+  object-fit: cover;
+  object-position: 62% 52%;
+}
+.gesturePanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgb(16 13 12 / 88%) 100%
+  );
+}
 .gestureCopy {
-  grid-column: 9 / 13;
-  padding-block-end: 3rem;
+  padding: clamp(1.25rem, 5vw, 5.5rem);
 }
 .gestureCopy h3 {
-  padding-block: 1.75rem 1.5rem;
+  padding-block: 0.8rem 1.2rem;
   font-weight: 400;
-  font-size: clamp(1.8rem, 3.2vw, 3.5rem);
-  line-height: 1.08;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.3rem, 8vw, 8.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
 }
 .gestureCopy > p:last-child,
 .originCopy {
@@ -173,16 +210,14 @@
   letter-spacing: 0.13em;
 }
 /* Fully visible by default. Motion is a CSS-only enhancement on supporting browsers. */
-@supports (animation-timeline: view()) {
+@supports (animation-timeline: view()) and
+  (animation-range: entry 0% entry 100%) {
   @media (prefers-reduced-motion: no-preference) {
     .opening > .marker,
-    .statement,
     .prelude,
     .materialTitle,
     .materialFigure,
     .materialCopy,
-    .gestureFigure,
-    .gestureCopy,
     .originHeading,
     .spaceFigure,
     .originCopy,
@@ -191,16 +226,70 @@
       animation-timeline: view();
       animation-range: entry 0% entry 100%;
     }
+    .statement {
+      view-timeline-name: --material-statement;
+    }
+    .line > span {
+      animation: line-reveal cubic-bezier(0.2, 0.7, 0.3, 1) both;
+      animation-timeline: --material-statement;
+      animation-range: entry 0% entry 65%;
+    }
+    .line:nth-child(2) > span {
+      animation-range: entry 15% entry 80%;
+    }
+    .line:nth-child(3) > span {
+      animation-range: entry 30% entry 95%;
+    }
     .materialReveal {
+      view-timeline-name: --material-image;
+    }
+    .spaceVisual {
+      view-timeline-name: --material-image;
       animation: material-open linear both;
-      animation-timeline: view();
+      animation-timeline: --material-image;
       animation-range: entry 0% entry 85%;
     }
-    .gestureVisual img {
-      animation: gesture-settle linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 60%;
+    .materialReveal img,
+    .spaceVisual img {
+      animation: image-push linear both;
+      animation-timeline: --material-image;
+      animation-range: entry 10% cover 65%;
     }
+    .gesturePanel {
+      view-timeline-name: --fermento;
+    }
+    .gestureVisual img {
+      transform-origin: 70% 50%;
+      animation: fermento-push linear both;
+      animation-timeline: --fermento;
+      animation-range: entry 0% exit 30%;
+    }
+    .gestureCopy {
+      animation: scroll-arrive ease-out both;
+      animation-timeline: --fermento;
+      animation-range: entry 52% entry 100%;
+    }
+    .spaceVisual img {
+      transform-origin: 55% 60%;
+    }
+  }
+}
+@keyframes fermento-push {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.24);
+  }
+}
+@keyframes line-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(105%) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 @keyframes scroll-arrive {
@@ -221,12 +310,12 @@
     clip-path: inset(0);
   }
 }
-@keyframes gesture-settle {
+@keyframes image-push {
   from {
-    transform: scale(1.035);
+    transform: scale(1);
   }
   to {
-    transform: scale(1);
+    transform: scale(1.18);
   }
 }
 @media (min-width: 1800px) {
@@ -253,19 +342,6 @@
     font-size: 0.85rem;
     padding-block-end: 1rem;
   }
-  .gestureFigure {
-    grid-column: 1 / 10;
-  }
-  .gestureCopy {
-    grid-column: 5 / 13;
-    padding-block: 2rem 0;
-  }
-  .gestureCopy h3 {
-    font-size: clamp(2rem, 4vw, 3rem);
-  }
-  .gestureCopy > p:last-child {
-    max-inline-size: 37ch;
-  }
   .spaceFigure {
     grid-column: 5 / 13;
   }
@@ -289,10 +365,10 @@
   .statement {
     font-size: clamp(2rem, 8.8vw, 3.5rem);
   }
-  .statement span:nth-child(1) {
+  .line:nth-child(2) {
     margin-inline-start: 8%;
   }
-  .statement span:nth-child(2) {
+  .line:nth-child(3) {
     margin-inline-start: 20%;
   }
   .prelude {
@@ -324,17 +400,8 @@
   .material {
     padding-block-end: 4.5rem;
   }
-  .gestureFigure {
-    grid-column: 1 / -1;
-  }
-  .gestureCopy {
-    grid-column: 4 / 13;
-  }
-  .gestureCopy h3 {
-    font-size: clamp(1.9rem, 7.2vw, 2.8rem);
-  }
-  .gesture {
-    padding-block-end: 5rem;
+  .gesturePanel {
+    min-block-size: max(30rem, 125vw);
   }
   .originHeading {
     grid-column: 1 / -1;
@@ -363,5 +430,106 @@
   }
   .chapter figcaption {
     font-size: 0.55rem;
+  }
+}
+
+.materialReveal {
+  --card-step: clamp(1.1rem, 2.7vw, 3rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline-start: calc(2 * var(--card-step));
+  padding-block-start: 2.75rem;
+  padding-block-end: calc(2 * var(--card-step));
+  isolation: isolate;
+}
+.materialCallout {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: 3;
+  pointer-events: none;
+  color: var(--viero-black);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.materialCallout::before {
+  content: "";
+  position: absolute;
+  inset: 1.35rem auto auto 0.35rem;
+  width: calc(2 * var(--card-step) + 0.85rem);
+  height: 2rem;
+  border-inline-start: 1px solid currentColor;
+  border-block-end: 1px solid currentColor;
+}
+.materialCallout::after {
+  content: "";
+  position: absolute;
+  inset: 3.15rem auto auto calc(2 * var(--card-step) + 0.95rem);
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--limestone);
+  box-shadow: 0 0 0 1px currentColor;
+}
+@supports (animation-timeline: view()) and
+  (animation-range: entry 0% entry 100%) {
+  @media (prefers-reduced-motion: no-preference) {
+    .materialCallout {
+      animation: scroll-arrive ease-out both;
+      animation-timeline: --material-image;
+      animation-range: entry 10% entry 42%;
+    }
+    .materialCallout::before {
+      animation: material-leader linear both;
+      animation-timeline: --material-image;
+      animation-range: entry 28% entry 60%;
+    }
+    .materialCallout::after {
+      animation: material-leader linear both;
+      animation-timeline: --material-image;
+      animation-range: entry 56% entry 64%;
+    }
+  }
+}
+@keyframes material-leader {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 -2px -2px -2px);
+  }
+}
+.materialSlide {
+  grid-area: 1 / 1;
+  position: relative;
+  overflow: clip;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--limestone);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 48%),
+    0 4px 14px rgb(30 22 17 / 22%);
+  cursor: pointer;
+}
+.materialSlide:focus-visible {
+  outline: 3px solid var(--viero-black);
+  outline-offset: -4px;
+}
+.materialSlide[data-depth="0"] {
+  z-index: 2;
+}
+.materialSlide[data-depth="1"] {
+  z-index: 1;
+  transform: translate(calc(-1 * var(--card-step)), var(--card-step));
+}
+.materialSlide[data-depth="2"] {
+  transform: translate(calc(-2 * var(--card-step)), calc(2 * var(--card-step)));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .materialSlide {
+    transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 }

@@ -10,6 +10,7 @@ export function BrandLogo() {
         width={156}
         height={60}
         alt="Viero"
+        loading="eager"
         unoptimized
       />
       <span className={styles.subtitle}>

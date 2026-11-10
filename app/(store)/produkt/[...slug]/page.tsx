@@ -1,3 +1,6 @@
+import { TextLink } from "@/components/ui/primitives";
+import { approvedTextures } from "@/lib/visualizer/approvals";
+import { visualizerPath } from "@/lib/visualizer/model";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getProduct, getVariants } from "@/lib/shopware/products";
 import { getContext } from "@/lib/shopware/context";
@@ -127,6 +130,13 @@ export default async function ProductPage({ params }: Props) {
         description={plainText(product.translated?.description) || ""}
         imageDownloads={<ProductDownloads product={product} />}
       >
+        {approvedTextures[product.id] && (
+          <Container>
+            <TextLink href={`${visualizerPath}?produkt=${product.id}`}>
+              An meiner Wand ansehen
+            </TextLink>
+          </Container>
+        )}
         <ProductResources product={product} />
       </ProductExperience>
       <script

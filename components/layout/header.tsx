@@ -6,6 +6,7 @@ import {
 } from "@/lib/content/contact-route";
 import { academyCategoryId, academyPath } from "@/lib/content/academy-route";
 import { aboutCategoryId, aboutPath } from "@/lib/content/about-route";
+import { getFooterContent } from "@/lib/content/footer";
 import { StickyHeader } from "./sticky-header";
 import { BrandLogo } from "./brand-logo";
 import { AccountNavigation } from "@/components/account/account-navigation";
@@ -15,11 +16,13 @@ import { getNavigation } from "@/lib/shopware/navigation";
 import { HamburgerNavigation } from "./hamburger-navigation";
 import { showroomCategoryId } from "@/lib/home/showroom";
 import { getContext } from "@/lib/shopware/context";
+import { visualizerPath } from "@/lib/visualizer/model";
 export async function Header() {
-  const [categories, context, customer] = await Promise.all([
+  const [categories, context, customer, footer] = await Promise.all([
     getNavigation().catch(() => []),
     getContext().catch(() => null),
     getCustomer().catch(() => null),
+    getFooterContent(),
   ]);
   const pageLinks = new Map([
     [aboutCategoryId, aboutPath],
@@ -69,6 +72,11 @@ export async function Header() {
     });
   if (!items.some((item) => item.href === contactPath))
     items.push({ id: contactCategoryId, name: "Kontakt", href: contactPath });
+  items.push({
+    id: "visualizer",
+    name: "Raumvisualisierer",
+    href: visualizerPath,
+  });
   return (
     <StickyHeader>
       <Link
@@ -81,7 +89,7 @@ export async function Header() {
       <div className="header-actions">
         <span id="header-product-search" style={{ display: "contents" }} />
         <AccountNavigation signedIn={!!customer} />
-        <HamburgerNavigation items={items} />
+        <HamburgerNavigation items={items} social={footer.social} />
       </div>
     </StickyHeader>
   );

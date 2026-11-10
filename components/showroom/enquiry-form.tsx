@@ -22,6 +22,7 @@ export function EnquiryForm({
   copy,
   shopwareLayout = false,
   privacyContent,
+  initialMessage,
   privacyHref = "/showroom/datenschutz",
 }: {
   definition: ShowroomFormDefinition;
@@ -36,6 +37,7 @@ export function EnquiryForm({
   privacyHref?: string;
   shopwareLayout?: boolean;
   privacyContent?: ReactNode;
+  initialMessage?: string;
 }) {
   const submit = useMemo(
     () =>
@@ -46,6 +48,9 @@ export function EnquiryForm({
   const [state, action, pending] = useActionState(submit, {});
   const notice = useRef<HTMLDivElement>(null);
   const privacyDialog = useRef<HTMLDialogElement>(null);
+  const messageField =
+    initialMessage &&
+    definition.fields.find((field) => field.type === "textarea")?.name;
   const styles = shopwareLayout ? contactStyles : showroomStyles;
   useEffect(() => {
     if (state.error || state.success) notice.current?.focus();
@@ -105,7 +110,9 @@ export function EnquiryForm({
             required: field.required,
             "aria-invalid": !!error,
             "aria-describedby": error ? `${id}-error` : undefined,
-            defaultValue: state.values?.[field.name] || "",
+            defaultValue:
+              state.values?.[field.name] ??
+              (field.name === messageField ? initialMessage : ""),
           };
           return (
             <div

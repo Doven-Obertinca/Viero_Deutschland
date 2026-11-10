@@ -1,15 +1,44 @@
 "use client";
+import { usePathname } from "next/navigation";
+import { SocialIcon } from "./social-icon";
+import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "./brand-logo";
 import { useEffect, useId, useRef, useState } from "react";
 import styles from "./hamburger-navigation.module.css";
 
 type NavigationItem = { id: string; name: string; href: string };
-export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
+const destinations = [
+  ["/", "Startseite"],
+  ["/produkte", "Produkte"],
+  ["/raumvisualisierer", "Raumvisualisierer"],
+  ["/toenung", "Tönung"],
+  ["/akademie", "Akademie"],
+  ["/showroom", "Showroom"],
+  ["/ueber-uns", "Über uns"],
+  ["/#inspiration", "Inspiration"],
+  ["/kontakt", "Kontakt"],
+] as const;
+
+export function HamburgerNavigation({
+  items,
+  social,
+}: {
+  items: NavigationItem[];
+  social: { title: string; href: string }[];
+}) {
+  const pathname = usePathname();
+  const links = [
+    ...destinations.map(([href, name]) => ({ href, name })),
+    ...items.filter(
+      (item) => !destinations.some(([href]) => href === item.href),
+    ),
+  ];
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const id = useId();
+  const [imageReady, setImageReady] = useState(false);
   const [open, setOpen] = useState(false);
   const [present, setPresent] = useState(false);
   useEffect(
@@ -19,9 +48,12 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
     [],
   );
   function show() {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
+    const menu = dialog.current;
+    if (!menu || menu.open) return;
+    menu.showModal();
+    // Establish the offscreen position before React applies the open state.
+    menu.getBoundingClientRect();
     setPresent(true);
-    dialog.current?.showModal();
     setOpen(true);
   }
   function close() {
@@ -68,7 +100,7 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
         id={id}
         className={styles.dialog}
         data-open={open}
-        aria-labelledby={`${id}-title`}
+        aria-label="Hauptmenü"
         onCancel={(event) => {
           event.preventDefault();
           close();
@@ -81,18 +113,40 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
           setPresent(false);
         }}
       >
+        <div className={styles.scene} aria-hidden="true">
+          <Image
+            src="/brand/navigation/marmorin-sand.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            quality={90}
+            loading="eager"
+            data-ready={imageReady}
+            onLoad={() => setImageReady(true)}
+          />
+          <div className={styles.wordmark}>
+            <BrandLogo />
+          </div>
+          <div className={styles.editorial}>
+            <span>ITALIAN SURFACE CULTURE</span>
+            <p>
+              Material.
+              <br />
+              Emotion.
+              <br />
+              Viero.
+            </p>
+          </div>
+        </div>
         <div className={styles.panel}>
-          <div className={styles.topbar}>
-            <span className={styles.wordmark}>
-              <BrandLogo />
-            </span>
+          <div className={styles.controls}>
             <button
               className={styles.trigger}
               aria-label="Menü schließen"
               onClick={close}
               autoFocus
             >
-              <span className={styles.label}>SCHLIESSEN</span>
+              <span className={styles.label}>MENÜ</span>
               <span
                 className={`${styles.icon} ${styles.closeIcon}`}
                 aria-hidden="true"
@@ -102,49 +156,28 @@ export function HamburgerNavigation({ items }: { items: NavigationItem[] }) {
               </span>
             </button>
           </div>
-          <div className={styles.content}>
-            <div className={styles.editorial}>
-              <span>ITALIAN SURFACE CULTURE</span>
-              <p>
-                Material.
-                <br />
-                Emotion.
-                <br />
-                <em>Viero.</em>
-              </p>
-              <span>
-                Made in Italy.
-                <br />
-                Für Räume mit Charakter.
-              </span>
-              <div className={styles.cut} aria-hidden="true" />
+          <nav aria-label="Hauptnavigation" className={styles.navigation}>
+            {links.map(({ href, name }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={close}
+                className={styles.navLink}
+                aria-current={pathname === href ? "page" : undefined}
+              >
+                {name}
+              </Link>
+            ))}
+          </nav>
+          {social.length > 0 && (
+            <div className={styles.social}>
+              {social.map(({ title, href }) => (
+                <a key={title} href={href} aria-label={title}>
+                  <SocialIcon name={title} />
+                </a>
+              ))}
             </div>
-            <nav aria-label="Hauptnavigation" className={styles.navigation}>
-              <h2 id={`${id}-title`}>ENTDECKEN SIE VIERO</h2>
-              {[{ id: "home", name: "Startseite", href: "/" }, ...items].map(
-                (item, index) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    onClick={close}
-                    className={styles.navLink}
-                    style={{ "--item-index": index } as React.CSSProperties}
-                  >
-                    <span className={styles.number}>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className={styles.linkLabel}>{item.name}</span>
-                  </Link>
-                ),
-              )}
-            </nav>
-          </div>
-          <div className={styles.bottom}>
-            <span>DEKORATIVE OBERFLÄCHEN. ITALIENISCHE HANDWERKSKUNST.</span>
-            <Link href="/produkte" onClick={close}>
-              Die Kollektion entdecken
-            </Link>
-          </div>
+          )}
         </div>
       </dialog>
     </>

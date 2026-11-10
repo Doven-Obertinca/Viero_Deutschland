@@ -1,9 +1,11 @@
-.hero {
+.geometry {
   --frame-width: min(43vw, 68svh);
   --frame-left: 46%;
   --frame-top: 53%;
   --concrete-blue: #c7d3dc;
   --brand-cut: polygon(0 0, 100% 0, 76% 100%, 0 100%);
+}
+.hero {
   background: transparent;
   color: var(--viero-black);
   height: calc(var(--story-count) * max(100svh, 680px));
@@ -321,7 +323,7 @@
   }
 }
 @media (max-width: 960px) {
-  .hero {
+  .geometry {
     --frame-width: 60vw;
     --frame-left: 42%;
     --frame-top: 44%;
@@ -365,7 +367,7 @@
   }
 }
 @media (max-width: 640px) {
-  .hero {
+  .geometry {
     --frame-width: 82vw;
     --frame-left: 40%;
     --frame-top: 39%;

@@ -64,7 +64,7 @@ export function ProductStory({ products }: { products: StoryProduct[] }) {
   return (
     <section
       ref={root}
-      className={`signature-hero ${styles.hero}`}
+      className={`signature-hero ${styles.geometry} ${styles.hero}`}
       style={{ "--story-count": count } as React.CSSProperties}
       aria-label="Viero Materialwelten"
     >

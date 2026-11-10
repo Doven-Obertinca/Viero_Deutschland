@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
+import { ArrivalIntro } from "@/components/layout/arrival-intro";
 import { Footer } from "@/components/layout/footer";
 import { siteUrl } from "@/lib/seo";
 import "./globals.css";
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body>
+        <ArrivalIntro />
         <div className="shop-background" aria-hidden="true" />
         <a className="skip-link" href="#main">
           Zum Inhalt
